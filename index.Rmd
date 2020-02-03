@@ -18,22 +18,4 @@ This is the EMaC manual for how to wrangle, analyze, and visualize data in **R**
 
 There are two things you need to do to install R on your computer. First, you would need to install the latest version of R which you would download and install from this link: [R-download](https://cloud.r-project.org/). Once you run and install R onto your computer, you would need to install R-Studio. R studio is the graphic user interface (GUI) where you can place all of your R-code. Follow this link: [R-Studio Desktop Download](https://rstudio.com/products/rstudio/download/). Once you have these two programs installed, all you need to do is launch R-studio Desktop and you are ready to go.
 
-The **bookdown** package can be installed from CRAN or Github:
 
-```{r eval=FALSE}
-install.packages("bookdown")
-library(bookdown)
-# or the development version
-# devtools::install_github("rstudio/bookdown")
-```
-
-Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading `#`.
-
-To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <https://yihui.name/tinytex/>.
-
-```{r include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
