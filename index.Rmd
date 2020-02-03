@@ -1,7 +1,7 @@
 --- 
-title: "A Minimal Book Example"
-author: "Yihui Xie"
-date: "`r Sys.Date()`"
+title: "The EMaC R Manual"
+author: "Alex Sciuto"
+date: "Last Updated Febuary 2020"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -12,9 +12,11 @@ github-repo: rstudio/bookdown-demo
 description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 ---
 
-# Prerequisites
+# How to Install R
 
-This is a _sample_ book written in **Markdown**. You can use anything that Pandoc's Markdown supports, e.g., a math equation $a^2 + b^2 = c^2$.
+This is the EMaC manual for how to wrangle, analyze, and visualize data in **R**. I will review a few key packages, in addition to explaing their key functions, with real data examples. 
+
+There are two things you need to do to install R on your computer. First, you would need to install the latest version of R which you would download and install from this link: [R-download](https://cloud.r-project.org/). Once you run and install R onto your computer, you would need to install R-Studio. R studio is the graphic user interface (GUI) where you can place all of your R-code. Follow this link: [R-Studio Desktop Download](https://rstudio.com/products/rstudio/download/). Once you have these two programs installed, all you need to do is launch R-studio Desktop and you are ready to go.
 
 The **bookdown** package can be installed from CRAN or Github:
 
