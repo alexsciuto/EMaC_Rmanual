@@ -1,0 +1,9 @@
+[
+["index.html", "The EMaC R Manual Chapter 1 How to Install R", " The EMaC R Manual Alex Sciuto Last Updated Febuary 2020 Chapter 1 How to Install R This is the EMaC manual for how to wrangle, analyze, and visualize data in R. I will review a few key packages, in addition to explaing their key functions, with real data examples. There are two things you need to do to install R on your computer. First, you would need to install the latest version of R which you would download and install from this link: R-download. Once you run and install R onto your computer, you would need to install R-Studio. R studio is the graphic user interface (GUI) where you can place all of your R-code. Follow this link: R-Studio Desktop Download. Once you have these two programs installed, all you need to do is launch R-studio Desktop and you are ready to go. devtools::install_github(&#39;yihui/tinytex&#39;) options(tinytex.verbose = TRUE) tinytex::reinstall_tinytex() tinytex::install_tinytex() tinytex:::install_prebuilt() "],
+["intro.html", "Chapter 2 Data Wrangling", " Chapter 2 Data Wrangling This is a tutorial on how to manipulate, wrangle, and clean data so it is ready for analysis and visualization. The first thing I am going to do is import a data set on interest. "],
+["literature.html", "Chapter 3 Literature", " Chapter 3 Literature Here is a review of existing methods. "],
+["methods.html", "Chapter 4 Methods", " Chapter 4 Methods We describe our methods in this chapter. "],
+["applications.html", "Chapter 5 Applications 5.1 Example one 5.2 Example two", " Chapter 5 Applications Some significant applications are demonstrated in this chapter. 5.1 Example one 5.2 Example two "],
+["final-words.html", "Chapter 6 Final Words", " Chapter 6 Final Words We have finished a nice book. "],
+["references.html", "References", " References "]
+]
