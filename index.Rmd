@@ -18,4 +18,10 @@ This is the EMaC manual for how to wrangle, analyze, and visualize data in **R**
 
 There are two things you need to do to install R on your computer. First, you would need to install the latest version of R which you would download and install from this link: [R-download](https://cloud.r-project.org/). Once you run and install R onto your computer, you would need to install R-Studio. R studio is the graphic user interface (GUI) where you can place all of your R-code. Follow this link: [R-Studio Desktop Download](https://rstudio.com/products/rstudio/download/). Once you have these two programs installed, all you need to do is launch R-studio Desktop and you are ready to go.
 
-
+```
+devtools::install_github('yihui/tinytex')
+options(tinytex.verbose = TRUE)
+tinytex::reinstall_tinytex()
+tinytex::install_tinytex()
+tinytex:::install_prebuilt()
+```
