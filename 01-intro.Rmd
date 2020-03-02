@@ -1,5 +1,4 @@
 # Introduction to Programming in R {#intro}
-s
 
 Before you can do data wrangling, statiscs, and visualization using R for cognitive psychology research, you need to learn the basic syntax in R. This chapter will introduce the basics.
 
@@ -82,6 +81,5 @@ Now that you have a basic understanding of logical operators, we can use them in
 |:----:| ------------- |:-------------:|:--:|:--:|
 |max(): this function finds the maximum number in a numeric vector| (c(1,2,3,4)): parameters are the things you input into teh function to get a specified output  | less than | x < 10 | TRUE |
 
-s
 
 ```
