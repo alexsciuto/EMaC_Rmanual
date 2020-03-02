@@ -31,6 +31,46 @@
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{natbib}
 \bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
 \usepackage{longtable,booktabs}
 % Fix footnotes in tables (requires footnote package)
 \IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
@@ -105,19 +145,177 @@ your R-code. Follow this link:
 Download}. Once you have these two programs installed, all you need to
 do is launch R-studio Desktop and you are ready to go.
 
+\chapter{Introduction to Programming in R}\label{intro}
+
+s
+
+Before you can do data wrangling, statiscs, and visualization using R
+for cognitive psychology research, you need to learn the basic syntax in
+R. This chapter will introduce the basics.
+
+\section{Variables in R}\label{variables-in-r}
+
+R can manipulate and wrangle all kinds of data, these data could be
+stored in a handful of variables that we can then work with. The first
+one we will be talking about is numeric.
+
+\subsection{Numeric}\label{numeric}
+
+a numeric is a number (including decimals) that can be stored within a
+variable. Here is an example:
+
+\textbf{\emph{\texttt{x\ =\ 2}}}
+
+Here, we assigned the numeric value \texttt{2} to the variable
+\texttt{x}. Thus, if we were to do arithemtic, \texttt{x} will be
+treated as \texttt{2}. Moreover, there are specific functions in R we
+can use in order to do arithmetic with numeric variables. Here are a few
+examples:
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule
+Arithemtic & R-Input & R-Output\tabularnewline
+\midrule
+\endhead
+Addition: & \texttt{x\ +\ 2} & \texttt{4}\tabularnewline
+Substraction: & \texttt{x\ -\ 2} & \texttt{0}\tabularnewline
+Division: & \texttt{x\ /\ 2} & \texttt{1}\tabularnewline
+Multiplication: & \texttt{x\ *\ 2} & \texttt{4}\tabularnewline
+Exponent: & \texttt{x\ \^{}\ 2} & \texttt{4}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsection{Character}\label{character}
+
+A character is a combination of characters (either letters and/or
+numbers) that can be stored within a variable. Moreover, it is very
+important that you place the character between quotation marks. Here is
+an example:
+
+\textbf{\emph{\texttt{x\ =\ "Cognitive\ Psychology"}}}
+
+Here, we assigned the character value \texttt{"Cognitive\ Psychology"}
+to the variable \texttt{x}. There are ways to manipulate character type
+variables, and also modify them. However, we will touch on that later.
+
+\subsection{Logical}\label{logical}
+
+A logical can only have two possible values, \texttt{TRUE} and
+\texttt{FALSE} that can be stored within a variable. This is not
+typically a varaible type that you will need to assign variable values
+to. However, the logical type variable is extremely important becuase a
+lot of functions in R return a logical variable. We will dive into some
+of these functions
+
+\subsection{Vector}\label{vector}
+
+A vector is multiple variables stored into one data-set. Vectors can
+contain any variable type: character, numeric, string, and logical. When
+you are declaring a a vector type variable, you typically have to use
+the concatenate function \texttt{c()}. Here is an example:
+
+\texttt{x\ =\ c(1,2,3,4)}
+
+\texttt{x\ =\ c("I",\ "like",\ "Cognitive",\ "Psychology")}
+
+\texttt{x\ =\ c(TRUE,\ FALSE,\ FALSE,\ TRUE)}
+
+To reference a vector varaible, you need to use \texttt{{[}{]}} and
+inside the brackets, you have to specify the index of where the given
+variable in the vector is. Here is an example
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x =}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"10"}\NormalTok{, }\StringTok{"20"}\NormalTok{, }\StringTok{"30"}\NormalTok{, }\StringTok{"40"}\NormalTok{)}
+\NormalTok{x[}\DecValTok{4}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
-devtools::install_github('yihui/tinytex')
-options(tinytex.verbose = TRUE)
-tinytex::reinstall_tinytex()
-tinytex::install_tinytex()
-tinytex:::install_prebuilt()
+## [1] "40"
 \end{verbatim}
 
-\chapter{Data Wrangling}\label{intro}
+Here, we assigned the numbers: \texttt{10,\ 20,\ 30,\ 40} to the vector
+\texttt{x}. \texttt{"Cognitive\ Psychology"} to the variable \texttt{x}.
+There are ways to manipulate character type variables, and also modify
+them. However, we will touch on that later.
 
-This is a tutorial on how to manipulate, wrangle, and clean data so it
-is ready for analysis and visualization. The first thing I am going to
-do is import a data set on interest.
+\section{Logical Operators \&
+if-Statements}\label{logical-operators-if-statements}
+
+Now that you have a basic understanding of how variables work in R, the
+next step is to learn how to use logical operators in order to specifiy
+what are the specific conditions under which you want your variables to
+be manipulated. The main way to do this in R is by using logical
+operators.
+
+\textbf{\emph{\texttt{x\ =\ 2}}}
+
+Here, we assigned the numeric value \texttt{2} to the variable
+\texttt{x}. Thus, if we were to apply logical operators to \texttt{x},
+\texttt{x} will be treated as \texttt{2}. Here are examples of all of
+the logical operators:
+
+\begin{longtable}[]{@{}lccc@{}}
+\toprule
+Logical Operators & Description & R-Input & R-Output\tabularnewline
+\midrule
+\endhead
+\textless{} & less than & x \textless{} 10 & TRUE\tabularnewline
+\textless{}= & less than or equal to & x \textless{}= 2 &
+TRUE\tabularnewline
+\textgreater{} & greater than & x \textgreater{} 1 & TRUE\tabularnewline
+\textgreater{}= & greater than or equal to & x \textgreater{}= 3 &
+FALSE\tabularnewline
+== & exactly equal to & x == 9 & FALSE\tabularnewline
+!= & not equal to & x != 10 & FALSE\tabularnewline
+!x & Not x & !x & FALSE\tabularnewline
+x \textbar{}~y & x OR y & x == 10 \textbar{}~x != 10 &
+TRUE\tabularnewline
+x \& y & x AND y & x == 10 \&x != 10 & FALSE\tabularnewline
+\bottomrule
+\end{longtable}
+
+Now that you have a basic understanding of logical operators, we can use
+them in order to specify code to manipulate variables in a particular
+way. For this example, we will be working with the function
+\texttt{if\_else()}. However, one question you may have is what is a
+function in R? I will describe the structure of functions, starting with
+a simple one.
+
+\begin{longtable}[]{@{}clccc@{}}
+\toprule
+\begin{minipage}[b]{0.08\columnwidth}\centering\strut
+function: if you give an input, the function will do some computation
+and return an output\strut
+\end{minipage} & \begin{minipage}[b]{0.17\columnwidth}\raggedright\strut
+arguments: this is the structure of how the input is recieved, every
+function has preference\strut
+\end{minipage} & \begin{minipage}[b]{0.19\columnwidth}\centering\strut
+output: this is what the function returns\strut
+\end{minipage} & \begin{minipage}[b]{0.06\columnwidth}\centering\strut
+input\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.08\columnwidth}\centering\strut
+max(): this function finds the maximum number in a numeric vector\strut
+\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright\strut
+(c(1,2,3,4)): parameters are the things you input into teh function to
+get a specified output\strut
+\end{minipage} & \begin{minipage}[t]{0.19\columnwidth}\centering\strut
+less than\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\centering\strut
+x \textless{} 10\strut
+\end{minipage} & \begin{minipage}[t]{0.06\columnwidth}\centering\strut
+TRUE\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+s
+
+```
 
 \chapter{Literature}\label{literature}
 

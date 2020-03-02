@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Data Wrangling | The EMaC R Manual</title>
+  <title>Chapter 2 Introduction to Programming in R | The EMaC R Manual</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.17.2 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Data Wrangling | The EMaC R Manual" />
+  <meta property="og:title" content="Chapter 2 Introduction to Programming in R | The EMaC R Manual" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Data Wrangling | The EMaC R Manual" />
+  <meta name="twitter:title" content="Chapter 2 Introduction to Programming in R | The EMaC R Manual" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -51,6 +51,43 @@
 
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -69,7 +106,15 @@
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> How to Install R</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Data Wrangling</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction to Programming in R</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#variables-in-r"><i class="fa fa-check"></i><b>2.1</b> Variables in R</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="intro.html"><a href="intro.html#numeric"><i class="fa fa-check"></i><b>2.1.1</b> Numeric</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro.html"><a href="intro.html#character"><i class="fa fa-check"></i><b>2.1.2</b> Character</a></li>
+<li class="chapter" data-level="2.1.3" data-path="intro.html"><a href="intro.html#logical"><i class="fa fa-check"></i><b>2.1.3</b> Logical</a></li>
+<li class="chapter" data-level="2.1.4" data-path="intro.html"><a href="intro.html#vector"><i class="fa fa-check"></i><b>2.1.4</b> Vector</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#logical-operators-if-statements"><i class="fa fa-check"></i><b>2.2</b> Logical Operators &amp; if-Statements</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
 <li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
 <li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
@@ -99,9 +144,179 @@
 
             <section class="normal" id="section-">
 <div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Data Wrangling</h1>
-<p>This is a tutorial on how to manipulate, wrangle, and clean data so it is ready for analysis and visualization. The first thing I am going to do is import a data set on interest.</p>
+<h1><span class="header-section-number">Chapter 2</span> Introduction to Programming in R</h1>
+<p>s</p>
+<p>Before you can do data wrangling, statiscs, and visualization using R for cognitive psychology research, you need to learn the basic syntax in R. This chapter will introduce the basics.</p>
+<div id="variables-in-r" class="section level2">
+<h2><span class="header-section-number">2.1</span> Variables in R</h2>
+<p>R can manipulate and wrangle all kinds of data, these data could be stored in a handful of variables that we can then work with. The first one we will be talking about is numeric.</p>
+<div id="numeric" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Numeric</h3>
+<p>a numeric is a number (including decimals) that can be stored within a variable. Here is an example:</p>
+<p><strong><em><code>x = 2</code></em></strong></p>
+<p>Here, we assigned the numeric value <code>2</code> to the variable <code>x</code>. Thus, if we were to do arithemtic, <code>x</code> will be treated as <code>2</code>. Moreover, there are specific functions in R we can use in order to do arithmetic with numeric variables. Here are a few examples:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Arithemtic</th>
+<th align="center">R-Input</th>
+<th align="center">R-Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Addition:</td>
+<td align="center"><code>x + 2</code></td>
+<td align="center"><code>4</code></td>
+</tr>
+<tr class="even">
+<td align="center">Substraction:</td>
+<td align="center"><code>x - 2</code></td>
+<td align="center"><code>0</code></td>
+</tr>
+<tr class="odd">
+<td align="center">Division:</td>
+<td align="center"><code>x / 2</code></td>
+<td align="center"><code>1</code></td>
+</tr>
+<tr class="even">
+<td align="center">Multiplication:</td>
+<td align="center"><code>x * 2</code></td>
+<td align="center"><code>4</code></td>
+</tr>
+<tr class="odd">
+<td align="center">Exponent:</td>
+<td align="center"><code>x ^ 2</code></td>
+<td align="center"><code>4</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="character" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Character</h3>
+<p>A character is a combination of characters (either letters and/or numbers) that can be stored within a variable. Moreover, it is very important that you place the character between quotation marks. Here is an example:</p>
+<p><strong><em><code>x = &quot;Cognitive Psychology&quot;</code></em></strong></p>
+<p>Here, we assigned the character value <code>&quot;Cognitive Psychology&quot;</code> to the variable <code>x</code>. There are ways to manipulate character type variables, and also modify them. However, we will touch on that later.</p>
+</div>
+<div id="logical" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Logical</h3>
+<p>A logical can only have two possible values, <code>TRUE</code> and <code>FALSE</code> that can be stored within a variable. This is not typically a varaible type that you will need to assign variable values to. However, the logical type variable is extremely important becuase a lot of functions in R return a logical variable. We will dive into some of these functions</p>
+</div>
+<div id="vector" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Vector</h3>
+<p>A vector is multiple variables stored into one data-set. Vectors can contain any variable type: character, numeric, string, and logical. When you are declaring a a vector type variable, you typically have to use the concatenate function <code>c()</code>. Here is an example:</p>
+<p><code>x = c(1,2,3,4)</code></p>
+<p><code>x = c(&quot;I&quot;, &quot;like&quot;, &quot;Cognitive&quot;, &quot;Psychology&quot;)</code></p>
+<p><code>x = c(TRUE, FALSE, FALSE, TRUE)</code></p>
+<p>To reference a vector varaible, you need to use <code>[]</code> and inside the brackets, you have to specify the index of where the given variable in the vector is. Here is an example</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;10&quot;</span>, <span class="st">&quot;20&quot;</span>, <span class="st">&quot;30&quot;</span>, <span class="st">&quot;40&quot;</span>)
+x[<span class="dv">4</span>]</code></pre></div>
+<pre><code>## [1] &quot;40&quot;</code></pre>
+<p>Here, we assigned the numbers: <code>10, 20, 30, 40</code> to the vector <code>x</code>. <code>&quot;Cognitive Psychology&quot;</code> to the variable <code>x</code>. There are ways to manipulate character type variables, and also modify them. However, we will touch on that later.</p>
+</div>
+</div>
+<div id="logical-operators-if-statements" class="section level2">
+<h2><span class="header-section-number">2.2</span> Logical Operators &amp; if-Statements</h2>
+<p>Now that you have a basic understanding of how variables work in R, the next step is to learn how to use logical operators in order to specifiy what are the specific conditions under which you want your variables to be manipulated. The main way to do this in R is by using logical operators.</p>
+<p><strong><em><code>x = 2</code></em></strong></p>
+<p>Here, we assigned the numeric value <code>2</code> to the variable <code>x</code>. Thus, if we were to apply logical operators to <code>x</code>, <code>x</code> will be treated as <code>2</code>. Here are examples of all of the logical operators:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Logical Operators</th>
+<th align="center">Description</th>
+<th align="center">R-Input</th>
+<th align="center">R-Output</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>&lt;</td>
+<td align="center">less than</td>
+<td align="center">x &lt; 10</td>
+<td align="center">TRUE</td>
+</tr>
+<tr class="even">
+<td>&lt;=</td>
+<td align="center">less than or equal to</td>
+<td align="center">x &lt;= 2</td>
+<td align="center">TRUE</td>
+</tr>
+<tr class="odd">
+<td>&gt;</td>
+<td align="center">greater than</td>
+<td align="center">x &gt; 1</td>
+<td align="center">TRUE</td>
+</tr>
+<tr class="even">
+<td>&gt;=</td>
+<td align="center">greater than or equal to</td>
+<td align="center">x &gt;= 3</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="odd">
+<td>==</td>
+<td align="center">exactly equal to</td>
+<td align="center">x == 9</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="even">
+<td>!=</td>
+<td align="center">not equal to</td>
+<td align="center">x != 10</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="odd">
+<td>!x</td>
+<td align="center">Not x</td>
+<td align="center">!x</td>
+<td align="center">FALSE</td>
+</tr>
+<tr class="even">
+<td>x | y</td>
+<td align="center">x OR y</td>
+<td align="center">x == 10 | x != 10</td>
+<td align="center">TRUE</td>
+</tr>
+<tr class="odd">
+<td>x &amp; y</td>
+<td align="center">x AND y</td>
+<td align="center">x == 10 &amp;x != 10</td>
+<td align="center">FALSE</td>
+</tr>
+</tbody>
+</table>
+<p>Now that you have a basic understanding of logical operators, we can use them in order to specify code to manipulate variables in a particular way. For this example, we will be working with the function <code>if_else()</code>. However, one question you may have is what is a function in R? I will describe the structure of functions, starting with a simple one.</p>
+<table style="width:65%;">
+<colgroup>
+<col width="9%" />
+<col width="19%" />
+<col width="22%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">function: if you give an input, the function will do some computation and return an output</th>
+<th>arguments: this is the structure of how the input is recieved, every function has preference</th>
+<th align="center">output: this is what the function returns</th>
+<th align="center">input</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">max(): this function finds the maximum number in a numeric vector</td>
+<td>(c(1,2,3,4)): parameters are the things you input into teh function to get a specified output</td>
+<td align="center">less than</td>
+<td align="center">x &lt; 10</td>
+<td align="center">TRUE</td>
+</tr>
+</tbody>
+</table>
+<p>s</p>
+<p>```</p>
 
+</div>
 </div>
             </section>
 
