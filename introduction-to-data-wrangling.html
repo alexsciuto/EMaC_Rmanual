@@ -114,7 +114,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.3" data-path="intro.html"><a href="intro.html#logical"><i class="fa fa-check"></i><b>2.1.3</b> Logical</a></li>
 <li class="chapter" data-level="2.1.4" data-path="intro.html"><a href="intro.html#vector"><i class="fa fa-check"></i><b>2.1.4</b> Vector</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#logical-operators-if-statements"><i class="fa fa-check"></i><b>2.2</b> Logical Operators &amp; if-Statements</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#logical-operators"><i class="fa fa-check"></i><b>2.2</b> Logical Operators</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html"><i class="fa fa-check"></i><b>3</b> Introduction to Data Wrangling</a><ul>
 <li class="chapter" data-level="3.1" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#the-study"><i class="fa fa-check"></i><b>3.1</b> The study</a></li>
@@ -170,17 +170,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(tidyverse)){
     <span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)
 }
-<span class="kw">library</span>(tidyverse) 
-<span class="kw">install.packages</span>(<span class="st">&quot;kableExtra&quot;</span>)</code></pre></div>
-<pre><code>## Installing package into &#39;/home/travis/R/Library&#39;
-## (as &#39;lib&#39; is unspecified)</code></pre>
-<pre><code>## also installing the dependency &#39;webshot&#39;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(kableExtra)</code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;kableExtra&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     group_rows</code></pre>
+<span class="kw">library</span>(tidyverse) </code></pre></div>
 </div>
 <div id="setting-the-working-directory" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> setting the working directory</h3>
@@ -190,23 +180,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">3.2.3</span> Reading in Data</h3>
 <p>Now that we have our working directory set we can use the <code>read_csv()</code> function which requires one minimum argument to work which is the name of your <code>.csv</code> file. Here we are setting the variable <code>mydata</code> to the contents within the <code>.csv</code> file. It stores the contents of <code>Topgown_Data.csv</code> in what is called a data frame. What is a dataframe? it is simply a matrix where each row constitutes a variable (which can be any type you want), and rows are observations.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;TopGown_Data.csv&quot;</span>, <span class="dt">skip_empty_rows =</span> <span class="ot">TRUE</span>)</code></pre></div>
-<pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   Participants = col_character(),
-##   visual_field = col_character(),
-##   constrained_to = col_character(),
-##   presented_word = col_character(),
-##   predicted_word = col_character(),
-##   question = col_character(),
-##   correct_answer = col_character(),
-##   Higher_Freq = col_character()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,] <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="st">&quot;html&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span>kableExtra<span class="op">::</span><span class="kw">kable_styling</span>(<span class="st">&quot;striped&quot;</span>, <span class="dt">full_width =</span> F) <span class="op">%&gt;%</span>
-<span class="st">  </span>kableExtra<span class="op">::</span><span class="kw">scroll_box</span>(<span class="dt">height =</span> <span class="st">&quot;500px&quot;</span>) </code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -1209,25 +1182,6 @@ Target
 <p>For this particular experiment we have two independent variables of interest: <code>visual_field</code> and <code>constrained_to</code>; and four participant variables of interest: <code>zTOWRE_Word</code>,<code>zTOWRE_Nonword</code>, <code>zSpelling_Dictation</code>,<code>zSpelling_Recogntion</code>. What if we are only interested in these variables, and we don’t particularly need word level variables such as <code>ortho_N</code>, or <code>phono_N</code>. We can then select these variables.</p>
 <p>For this particular function, the first argument is going to be the dataset of interest. the dataset for we will be selecting from is <code>mydata</code>. The following arguments are simply the columns you would like to keep.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dplyr<span class="op">::</span><span class="kw">select</span>(mydata, Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,   zSpelling_Dictation,zSpelling_Recogntion)</code></pre></div>
-<pre><code>## # A tibble: 14,004 x 7
-##    Participants visual_field constrained_to zTOWRE_Word zTOWRE_Nonword
-##    &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;                &lt;dbl&gt;          &lt;dbl&gt;
-##  1 tg011        Fovea        A                    -1.75         0.0718
-##  2 tg011        Parafovea    N                    -1.75         0.0718
-##  3 tg011        Fovea        A                    -1.75         0.0718
-##  4 tg011        Fovea        A                    -1.75         0.0718
-##  5 tg011        Parafovea    T                    -1.75         0.0718
-##  6 tg011        Fovea        N                    -1.75         0.0718
-##  7 tg011        Parafovea    A                    -1.75         0.0718
-##  8 tg011        Fovea        A                    -1.75         0.0718
-##  9 tg011        Fovea        N                    -1.75         0.0718
-## 10 tg011        Parafovea    N                    -1.75         0.0718
-## # … with 13,994 more rows, and 2 more variables: zSpelling_Dictation &lt;dbl&gt;,
-## #   zSpelling_Recogntion &lt;dbl&gt;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,] <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword, zSpelling_Dictation,zSpelling_Recogntion) <span class="op">%&gt;%</span>
-<span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="st">&quot;html&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span>kableExtra<span class="op">::</span><span class="kw">kable_styling</span>(<span class="st">&quot;striped&quot;</span>, <span class="dt">full_width =</span> F) <span class="op">%&gt;%</span>
-<span class="st">  </span>kableExtra<span class="op">::</span><span class="kw">scroll_box</span>(<span class="dt">height =</span> <span class="st">&quot;500px&quot;</span>)</code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -1494,24 +1448,6 @@ N
 <p>However, another way I would suggest writing code like this is to use a function in the <code>tidyverse</code> called the pipe (<code>%&gt;%</code>). Like the <code>select()</code> function, the first argument in all <code>tidyverse</code> functions will be your dataset of interest. The pipe simply gets a dataset, and pushes it into the first argument of a function. Here is an example.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,    zSpelling_Dictation,zSpelling_Recogntion) <span class="op">%&gt;%</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, visual_field, constrained_to)</code></pre></div>
-<pre><code>## # A tibble: 14,004 x 3
-##    Participants visual_field constrained_to
-##    &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;         
-##  1 tg011        Fovea        A             
-##  2 tg011        Parafovea    N             
-##  3 tg011        Fovea        A             
-##  4 tg011        Fovea        A             
-##  5 tg011        Parafovea    T             
-##  6 tg011        Fovea        N             
-##  7 tg011        Parafovea    A             
-##  8 tg011        Fovea        A             
-##  9 tg011        Fovea        N             
-## 10 tg011        Parafovea    N             
-## # … with 13,994 more rows</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,] <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, visual_field, constrained_to) <span class="op">%&gt;%</span>
-<span class="st">  </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="st">&quot;html&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span>kableExtra<span class="op">::</span><span class="kw">kable_styling</span>(<span class="st">&quot;striped&quot;</span>, <span class="dt">full_width =</span> F) <span class="op">%&gt;%</span>
-<span class="st">  </span>kableExtra<span class="op">::</span><span class="kw">scroll_box</span>(<span class="dt">height =</span> <span class="st">&quot;500px&quot;</span>)</code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>

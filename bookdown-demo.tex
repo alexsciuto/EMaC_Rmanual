@@ -252,8 +252,7 @@ Here, we assigned the numbers: \texttt{10,\ 20,\ 30,\ 40} to the vector
 There are ways to manipulate character type variables, and also modify
 them. However, we will touch on that later.
 
-\section{Logical Operators \&
-if-Statements}\label{logical-operators-if-statements}
+\section{Logical Operators}\label{logical-operators}
 
 Now that you have a basic understanding of how variables work in R, the
 next step is to learn how to use logical operators in order to specifiy
@@ -287,13 +286,6 @@ TRUE\tabularnewline
 x \& y & x AND y & x == 10 \&x != 10 & FALSE\tabularnewline
 \bottomrule
 \end{longtable}
-
-Now that you have a basic understanding of logical operators, we can use
-them in order to specify code to manipulate variables in a particular
-way. For this example, we will be working with the function
-\texttt{if\_else()}. However, one question you may have is what is a
-function in R? I will describe the structure of functions, starting with
-a simple one.
 
 \chapter{Introduction to Data
 Wrangling}\label{introduction-to-data-wrangling}
@@ -353,31 +345,8 @@ function.
     \KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
 \NormalTok{\}}
 \KeywordTok{library}\NormalTok{(tidyverse) }
-\KeywordTok{install.packages}\NormalTok{(}\StringTok{"kableExtra"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Installing package into '/home/travis/R/Library'
-## (as 'lib' is unspecified)
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{library}\NormalTok{(kableExtra)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## Attaching package: 'kableExtra'
-\end{verbatim}
-
-\begin{verbatim}
-## The following object is masked from 'package:dplyr':
-## 
-##     group_rows
-\end{verbatim}
 
 \subsection{setting the working
 directory}\label{setting-the-working-directory}
@@ -401,37 +370,6 @@ rows are observations.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{mydata =}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"TopGown_Data.csv"}\NormalTok{, }\DataTypeTok{skip_empty_rows =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Warning: Missing column names filled in: 'X1' [1]
-\end{verbatim}
-
-\begin{verbatim}
-## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   Participants = col_character(),
-##   visual_field = col_character(),
-##   constrained_to = col_character(),
-##   presented_word = col_character(),
-##   predicted_word = col_character(),
-##   question = col_character(),
-##   correct_answer = col_character(),
-##   Higher_Freq = col_character()
-## )
-\end{verbatim}
-
-\begin{verbatim}
-## See spec(...) for full column specifications.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mydata[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,] }\OperatorTok{%>%}\StringTok{ }\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\StringTok{"html"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{kable_styling}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\DataTypeTok{full_width =}\NormalTok{ F) }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{scroll_box}\NormalTok{(}\DataTypeTok{height =} \StringTok{"500px"}\NormalTok{) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -1124,33 +1062,6 @@ would like to keep.
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-## # A tibble: 14,004 x 7
-##    Participants visual_field constrained_to zTOWRE_Word zTOWRE_Nonword
-##    <chr>        <chr>        <chr>                <dbl>          <dbl>
-##  1 tg011        Fovea        A                    -1.75         0.0718
-##  2 tg011        Parafovea    N                    -1.75         0.0718
-##  3 tg011        Fovea        A                    -1.75         0.0718
-##  4 tg011        Fovea        A                    -1.75         0.0718
-##  5 tg011        Parafovea    T                    -1.75         0.0718
-##  6 tg011        Fovea        N                    -1.75         0.0718
-##  7 tg011        Parafovea    A                    -1.75         0.0718
-##  8 tg011        Fovea        A                    -1.75         0.0718
-##  9 tg011        Fovea        N                    -1.75         0.0718
-## 10 tg011        Parafovea    N                    -1.75         0.0718
-## # ... with 13,994 more rows, and 2 more variables: zSpelling_Dictation <dbl>,
-## #   zSpelling_Recogntion <dbl>
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mydata[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,] }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword, zSpelling_Dictation,zSpelling_Recogntion) }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\StringTok{"html"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{kable_styling}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\DataTypeTok{full_width =}\NormalTok{ F) }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{scroll_box}\NormalTok{(}\DataTypeTok{height =} \StringTok{"500px"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 Participants
 
 visual\_field
@@ -1318,32 +1229,6 @@ first argument of a function. Here is an example.
 \begin{Highlighting}[]
 \NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,    zSpelling_Dictation,zSpelling_Recogntion) }\OperatorTok{%>%}
 \StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, visual_field, constrained_to)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## # A tibble: 14,004 x 3
-##    Participants visual_field constrained_to
-##    <chr>        <chr>        <chr>         
-##  1 tg011        Fovea        A             
-##  2 tg011        Parafovea    N             
-##  3 tg011        Fovea        A             
-##  4 tg011        Fovea        A             
-##  5 tg011        Parafovea    T             
-##  6 tg011        Fovea        N             
-##  7 tg011        Parafovea    A             
-##  8 tg011        Fovea        A             
-##  9 tg011        Fovea        N             
-## 10 tg011        Parafovea    N             
-## # ... with 13,994 more rows
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mydata[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,] }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, visual_field, constrained_to) }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\StringTok{"html"}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{kable_styling}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\DataTypeTok{full_width =}\NormalTok{ F) }\OperatorTok{%>%}
-\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{scroll_box}\NormalTok{(}\DataTypeTok{height =} \StringTok{"500px"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
