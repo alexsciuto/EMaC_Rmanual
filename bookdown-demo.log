@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.2)  3 MAR 2020 19:56
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/W32TeX) (preloaded format=xelatex 2020.3.2)  3 MAR 2020 22:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -898,35 +898,37 @@ Package longtable Warning: Column widths have changed
 
 ]
 Chapter 3.
-[11] [12]
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 321.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 321.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 321.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 321.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 321.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 321.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 321.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 321.
-! TeX capacity exceeded, sorry [main memory size=5000000].
+[11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22]
+Overfull \hbox (4.562pt too wide) in paragraph at lines 954--955
+\TU/lmtt/m/n/10 zTOWRE_Word\TU/lmr/m/n/10 ,\TU/lmtt/m/n/10 zTOWRE_Nonword\TU/lm
+r/m/n/10 , \TU/lmtt/m/n/10 zSpelling_Dictation\TU/lmr/m/n/10 ,\TU/lmtt/m/n/10 z
+Spelling_Recogntion\TU/lmr/m/n/10 .
+ []
+
+
+Overfull \hbox (353.25pt too wide) in paragraph at lines 961--961
+[]\TU/lmtt/m/n/10 dplyr::select(mydata, File_Name, visual_field, constrained_to
+, zTOWRE_Word,zTOWRE_Nonword,  zSpelling_Dictation,zSpelling_Recogntion)[] 
+ []
+
+[23] [24] [25] [26]
+
+LaTeX Warning: File `https://raw.githubusercontent.com/USF-Psych-DataSci/Classr
+oom/master/img/pipe_routine.jpg' not found on input line 1197.
+
+! Unable to load picture or PDF file 'https://raw.githubusercontent.com/USF-Psy
+ch-DataSci/Classroom/master/img/pipe_routine.jpg'.
 <to be read again> 
-                   \ignorespaces 
-l.5215 ... -0.1122026 & 1.0708590 & -0.3964017 & -
-                                                  0.1894569 & 0.3372285 & -0...
- 
+                   }
+l.1197 ...i/Classroom/master/img/pipe_routine.jpg}
+                                                   
 Here is how much of TeX's memory you used:
- 17438 strings out of 481765
- 308219 string characters out of 5934543
- 5000000 words of memory out of 5000000
- 34222 multiletter control sequences out of 15000+600000
- 538813 words of font info for 80 fonts, out of 8000000 for 9000
+ 17467 strings out of 481765
+ 310255 string characters out of 5934543
+ 723691 words of memory out of 5000000
+ 34235 multiletter control sequences out of 15000+600000
+ 535976 words of font info for 63 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  52i,6n,115p,1667b,433s stack positions out of 5000i,500n,10000p,200000b,80000s
-Output written on bookdown-demo.pdf (12 pages).
+
+Output written on bookdown-demo.pdf (26 pages).
