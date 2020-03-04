@@ -85,14 +85,40 @@ Required aesthetics:
   * `bins`: the number of bins/bars shown in the plot.
   * `binwidth`: the with of the bins shown on the plot.
   
-Let us say that we want to make sure our linguistic stimuli is balanced across specific word properties such as word frequency. We want to know if there are too many high frequency words as comparede to low ones, or vice versa. So here we are going to plot a histogram displaying the distribution of word frequency across items. However, what if we are also interested if this varies across sentence constraints? Then we can use the `fill` argument in the `aes()` call to do this.
+Let us say that we want to ask very, very specific questions about how some word properties relate to other word properties. For example, in this experiment we change one letter for a given letter position. for example (word-work) pair manipulates the 4th letter position while (worm-dorm) pair manipulates the 1rst letter position. Let us explore if the words in a particular letter position category vary in word frequency. The way we can do this is by using the `facet_grid()` function in `ggplot`.
 
 ```{r results = 'hide', message = FALSE, warning= FALSE}
 
-mydata %>% ggplot(aes(x = OrthoN_T, fill = constrained_to)) + 
+mydata %>% ggplot(aes(x = Freq_T)) + 
   geom_histogram(bins = 20, alpha = .7) + 
   theme_update(plot.title = element_text(hjust = 0.5)) +  
-  scale_fill_discrete(name  ="Sentence Constraint", labels=c("Alternative", "Neutral", "Target")) +
+  xlab("Word Frequency of Target Word") + 
+  ylab("Count") + 
+  ggtitle("Word Frequency Distribution for Target Words") + 
+  facet_grid(~probe_position) +
+  theme_classic() 
+  
+
+```
+
+### Example: Density Grammar
+
+Essentially, a “smooth” version of a histogram. Uses kernels to produce the curve.
+
+Required aesthetics:
+
+* `x`: A numeric vector.
+Good to know:
+
+* `bw` argument controls the smoothness: Smaller = rougher.
+
+Let us say that we want to explore the same question from before, but we felt like the last graphic wasn't as clear as we would want it to be. We could use a different graphing strategy such as the density plot to make it clearer to whoever is intepreting the data. Data is only as good as you can communicate and understand it. Observe the differences between the last code's output and this code's output
+
+```{r results = 'hide', message = FALSE, warning= FALSE}
+
+mydata %>% ggplot(aes(x = Freq_T)) + 
+  geom_density(aes(fill=factor(probe_position), alpha = 0.05)) + 
+  theme_update(plot.title = element_text(hjust = 0.5)) +  
   xlab("Word Frequency of Target Word") + 
   ylab("Count") + 
   ggtitle("Word Frequency Distribution for Target Words") + 
@@ -100,5 +126,3 @@ mydata %>% ggplot(aes(x = OrthoN_T, fill = constrained_to)) +
   
 
 ```
-
-
