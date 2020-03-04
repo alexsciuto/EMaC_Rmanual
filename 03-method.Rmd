@@ -1,18 +1,36 @@
 # Plotting
 
+```{r include = FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+if(!require(knitr)){
+    install.packages("knitr")
+}
+library(knitr)
+
+if(!require(kableExtra)){
+    install.packages("kableExtra")
+}
+library(kableExtra)
+
+library(tidyverse)
+
+mydata = read_csv("TopGown_Data.csv", skip_empty_rows = TRUE)
+```
 Now that we have a basic understanding of how to wrangle data, now we want to graphically explain the data we are wrangling. For this chapter we will be using `ggplot` package to further understand the data. However, before we go into plotting specific things about the data, we need to learn the grammar of plotting with `ggplot` in general
 
 ## ggplot grammar
 
 You can think of the grammar of graphics as a systematic approach for describing the components of a graph. It has seven components (the ones in bold are required to be specifed explicitly in ggplot2):
 
-* Data
+* ***Data***
     * data that you’re feeding into a plot.
-* Aesthetic mappings
+* ***Aesthetic mappings***
     * How are variables (columns) from your data connect to a visual dimension?
       Horizontal positioning, vertical positioning, size, colour, shape, etc.
       These visual dimensions are called “aesthetics”
-* Geometric objects
+* ***Geometric objects***
     * What are the objects that are actually drawn on the plot?
       A point, a line, a bar, a histogram, a density, etc.
 * Scales
@@ -28,4 +46,20 @@ You can think of the grammar of graphics as a systematic approach for describing
 * Facet
     * This is a specification of data variables that partition the data into smaller “sub plots”, or panels.
       These components are like parameters of statistical graphics, defining the “space” of statistical graphics. In theory, there is a one-to-one mapping between a plot and its       grammar components, making this a useful way to specify graphics.
+      
+## Example: Scatterplot grammar
+
+Let us say that we are interested in how specific word properties relate to one another, and how correlated they are. With this information we can learn specific detials about the nature of our linguistic stimuli, which is very important in psycholinguistics. So for this example we are going to plot the orthographic neighborhood size of the target word and word frequency. 
+
+```{r results = 'hide', message = FALSE, warning= FALSE}
+
+mydata %>% ggplot(aes(x = OrthoN_T, y = Freq_T)) + # this defines the x and y axes of the plot
+  geom_point() + # this adds geometric objects
+  theme_classic() + # this sets the theme for the plot
+  theme_update(plot.title = element_text(hjust = 0.5)) + # this line centers the title
+  xlab("Orthographic Neighborhood Size of Target Word") + # this line sets the label for x-axis
+  ylab("Word Frequency of Target Word") + # this line sets the label for y-axis
+  ggtitle("Word Frequency and Orthographic Neighborhood Size Scatter Plot") # this sets the title for the plot
+
+```
   
