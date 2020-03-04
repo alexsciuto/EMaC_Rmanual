@@ -1644,7 +1644,7 @@ in bold are required to be specifed explicitly in ggplot2):
 \begin{itemize}
 \tightlist
 \item
-  Data
+  \textbf{\emph{Data}}
 
   \begin{itemize}
   \tightlist
@@ -1652,7 +1652,7 @@ in bold are required to be specifed explicitly in ggplot2):
     data that you're feeding into a plot.
   \end{itemize}
 \item
-  Aesthetic mappings
+  \textbf{\emph{Aesthetic mappings}}
 
   \begin{itemize}
   \tightlist
@@ -1663,7 +1663,7 @@ in bold are required to be specifed explicitly in ggplot2):
     ``aesthetics''
   \end{itemize}
 \item
-  Geometric objects
+  \textbf{\emph{Geometric objects}}
 
   \begin{itemize}
   \tightlist
@@ -1717,6 +1717,30 @@ in bold are required to be specifed explicitly in ggplot2):
     to specify graphics.
   \end{itemize}
 \end{itemize}
+
+\section{Example: Scatterplot
+grammar}\label{example-scatterplot-grammar}
+
+Let us say that we are interested in how specific word properties relate
+to one another, and how correlated they are. With this information we
+can learn specific detials about the nature of our linguistic stimuli,
+which is very important in psycholinguistics. So for this example we are
+going to plot the orthographic neighborhood size of the target word and
+word frequency.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ OrthoN_T, }\DataTypeTok{y =}\NormalTok{ Freq_T)) }\OperatorTok{+}\StringTok{ }\CommentTok{# this defines the x and y axes of the plot}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\CommentTok{# this adds geometric objects}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}\StringTok{ }\CommentTok{# this sets the theme for the plot}
+\StringTok{  }\KeywordTok{theme_update}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\CommentTok{# this line centers the title}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Orthographic Neighborhood Size of Target Word"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# this line sets the label for x-axis}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Word Frequency of Target Word"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# this line sets the label for y-axis}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Word Frequency and Orthographic Neighborhood Size Scatter Plot"}\NormalTok{) }\CommentTok{# this sets the title for the plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-19-1.pdf}
 
 \chapter{Applications}\label{applications}
 

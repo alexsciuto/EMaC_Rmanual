@@ -133,6 +133,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>4</b> Plotting</a><ul>
 <li class="chapter" data-level="4.1" data-path="plotting.html"><a href="plotting.html#ggplot-grammar"><i class="fa fa-check"></i><b>4.1</b> ggplot grammar</a></li>
+<li class="chapter" data-level="4.2" data-path="plotting.html"><a href="plotting.html#example-scatterplot-grammar"><i class="fa fa-check"></i><b>4.2</b> Example: Scatterplot grammar</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
 <li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
@@ -167,15 +168,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">4.1</span> ggplot grammar</h2>
 <p>You can think of the grammar of graphics as a systematic approach for describing the components of a graph. It has seven components (the ones in bold are required to be specifed explicitly in ggplot2):</p>
 <ul>
-<li>Data
+<li><strong><em>Data</em></strong>
 <ul>
 <li>data that you’re feeding into a plot.</li>
 </ul></li>
-<li>Aesthetic mappings
+<li><strong><em>Aesthetic mappings</em></strong>
 <ul>
 <li>How are variables (columns) from your data connect to a visual dimension? Horizontal positioning, vertical positioning, size, colour, shape, etc. These visual dimensions are called “aesthetics”</li>
 </ul></li>
-<li>Geometric objects
+<li><strong><em>Geometric objects</em></strong>
 <ul>
 <li>What are the objects that are actually drawn on the plot? A point, a line, a bar, a histogram, a density, etc.</li>
 </ul></li>
@@ -196,6 +197,18 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>This is a specification of data variables that partition the data into smaller “sub plots”, or panels. These components are like parameters of statistical graphics, defining the “space” of statistical graphics. In theory, there is a one-to-one mapping between a plot and its grammar components, making this a useful way to specify graphics.</li>
 </ul></li>
 </ul>
+</div>
+<div id="example-scatterplot-grammar" class="section level2">
+<h2><span class="header-section-number">4.2</span> Example: Scatterplot grammar</h2>
+<p>Let us say that we are interested in how specific word properties relate to one another, and how correlated they are. With this information we can learn specific detials about the nature of our linguistic stimuli, which is very important in psycholinguistics. So for this example we are going to plot the orthographic neighborhood size of the target word and word frequency.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> OrthoN_T, <span class="dt">y =</span> Freq_T)) <span class="op">+</span><span class="st"> </span><span class="co"># this defines the x and y axes of the plot</span>
+<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co"># this adds geometric objects</span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span><span class="co"># this sets the theme for the plot</span>
+<span class="st">  </span><span class="kw">theme_update</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># this line centers the title</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Orthographic Neighborhood Size of Target Word&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># this line sets the label for x-axis</span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Word Frequency of Target Word&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># this line sets the label for y-axis</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Word Frequency and Orthographic Neighborhood Size Scatter Plot&quot;</span>) <span class="co"># this sets the title for the plot</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 
 </div>
 </div>
