@@ -113,7 +113,7 @@ mydata[0:10,] %>% dplyr::select(Participants, visual_field, constrained_to) %>%
 
 ```
 
-In this regard, the pipe follows simple logic. Once a dataset is manipulated by one function, you pass it to the next function. 
+In this regard, the pipe follows simple logic. Once a dataset is manipulated by one function, you pass it to the next function. s
 
 ### arrange()
 
