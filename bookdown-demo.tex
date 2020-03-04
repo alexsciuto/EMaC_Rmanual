@@ -1627,9 +1627,96 @@ derp071
 
 0.1906808
 
-\chapter{Methods}\label{methods}
+\chapter{Plotting}\label{plotting}
 
-We describe our methods in this chapter.
+Now that we have a basic understanding of how to wrangle data, now we
+want to graphically explain the data we are wrangling. For this chapter
+we will be using \texttt{ggplot} package to further understand the data.
+However, before we go into plotting specific things about the data, we
+need to learn the grammar of plotting with \texttt{ggplot} in general
+
+\section{ggplot grammar}\label{ggplot-grammar}
+
+You can think of the grammar of graphics as a systematic approach for
+describing the components of a graph. It has seven components (the ones
+in bold are required to be specifed explicitly in ggplot2):
+
+\begin{itemize}
+\tightlist
+\item
+  Data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    data that you're feeding into a plot.
+  \end{itemize}
+\item
+  Aesthetic mappings
+
+  \begin{itemize}
+  \tightlist
+  \item
+    How are variables (columns) from your data connect to a visual
+    dimension? Horizontal positioning, vertical positioning, size,
+    colour, shape, etc. These visual dimensions are called
+    ``aesthetics''
+  \end{itemize}
+\item
+  Geometric objects
+
+  \begin{itemize}
+  \tightlist
+  \item
+    What are the objects that are actually drawn on the plot? A point, a
+    line, a bar, a histogram, a density, etc.
+  \end{itemize}
+\item
+  Scales
+
+  \begin{itemize}
+  \tightlist
+  \item
+    How is a variable mapped to its aesthetic? Will it be mapped
+    linearly? On a log scale? Something else? This includes things like
+    the color scale e.g., c(control, treatment\_1, treatment\_2)
+    -\textgreater{} c(``blue'', ``green'', ``red'')
+  \end{itemize}
+\item
+  Statistical transformations
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Whether and how the data are combined/transformed before being
+    plotted e.g., in a bar chart, data are transformed into their
+    frequencies; in a box-plot, data are transformed to a five-number
+    summary.
+  \end{itemize}
+\item
+  Coordinate system
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This is a specification of how the position aesthetics (x and y) are
+    depicted on the plot. For example, rectangular/cartesian, or polar
+    coordinates.
+  \end{itemize}
+\item
+  Facet
+
+  \begin{itemize}
+  \tightlist
+  \item
+    This is a specification of data variables that partition the data
+    into smaller ``sub plots'', or panels. These components are like
+    parameters of statistical graphics, defining the ``space'' of
+    statistical graphics. In theory, there is a one-to-one mapping
+    between a plot and its grammar components, making this a useful way
+    to specify graphics.
+  \end{itemize}
+\end{itemize}
 
 \chapter{Applications}\label{applications}
 
