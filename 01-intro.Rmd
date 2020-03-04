@@ -55,7 +55,7 @@ x[4]
 
 Here, we assigned the numbers: `10, 20, 30, 40` to the vector `x`. `"Cognitive Psychology"` to the variable `x`. There are ways to manipulate character type variables, and also modify them. However, we will touch on that later.
 
-## Logical Operators & if-Statements
+## Logical Operators 
 
 Now that you have a basic understanding of how variables work in R, the next step is to learn how to use logical operators in order to specifiy what are the specific conditions under which you want your variables to be manipulated. The main way to do this in R is by using logical operators. 
 
@@ -75,7 +75,6 @@ Here, we assigned the numeric value `2` to the variable `x`. Thus, if we were to
 | x \|\ y | x OR y    | x == 10 \|\ x != 10|TRUE|
 | x & y  | 	x AND y | x == 10 &x != 10|FALSE|
 
-Now that you have a basic understanding of logical operators, we can use them in order to specify code to manipulate variables in a particular way. For this example, we will be working with the function `if_else()`. However, one question you may have is what is a function in R? I will describe the structure of functions, starting with a simple one. 
 
 
 
