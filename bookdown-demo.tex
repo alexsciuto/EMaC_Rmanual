@@ -1635,7 +1635,7 @@ we will be using \texttt{ggplot} package to further understand the data.
 However, before we go into plotting specific things about the data, we
 need to learn the grammar of plotting with \texttt{ggplot} in general
 
-\subsection{ggplot grammar}\label{ggplot-grammar}
+\section{ggplot grammar}\label{ggplot-grammar}
 
 You can think of the grammar of graphics as a systematic approach for
 describing the components of a graph. It has seven components (the ones
@@ -1839,6 +1839,66 @@ the last code's output and this code's output
 \end{Shaded}
 
 \includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+\section{Plotting: Experimental
+Analysis}\label{plotting-experimental-analysis}
+
+In cognitive psychology we are particularly interested in how our
+independent variables and participant variables influence performance on
+a particular task. In this section we are going to plot performance on
+this study's task. We are going to view a few ways to graphically
+represent how these variables influence performance.
+
+\subsection{Plotting Levels of One Categorical
+Variable}\label{plotting-levels-of-one-categorical-variable}
+
+One of our manipulations for this study was visual field. Staub and
+Goddard (2019) argue that it is easier to identify words when they are
+presented in foveal vision as compared to parafoveal vision. This is
+ostensibly due to the fact that visual clarity drops as a function of
+eccentricity (how many degrees from central vision is the target word).
+To test this hypothesis, we will simply graph how people perform on a
+task across visual field. Here is an example.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ visual_field, }\DataTypeTok{y =}\NormalTok{ accuracy)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{size =} \DecValTok{3}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Visual Field"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Correct Responses"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Correct Responses as a Function of Visual Field"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# stat_summary(fun.data = "mean_se", geom = "pointrange")}
+\end{Highlighting}
+\end{Shaded}
+
+Now you may see that there is something wrong with this graph. In fact,
+there isn't, the problem is that all of the response data is binary:
+coded as (0) when you are incorrect, and (1) when you are correct. Since
+participants got right and wrong answers in both levels on the
+condition, they look identical. Thus, a better way to plot this is to
+create a summarized version of the data in each level of visual field.
+Here is an example.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ visual_field, }\DataTypeTok{y =}\NormalTok{ accuracy)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{stat_summary}\NormalTok{(}\DataTypeTok{fun.data =} \StringTok{"mean_se"}\NormalTok{, }\DataTypeTok{geom =} \StringTok{"pointrange"}\NormalTok{, }\DataTypeTok{size =}\NormalTok{ .}\DecValTok{8}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Visual Field"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Correct Responses"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Correct Responses as a Function of Visual Field"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 \bibliography{book.bib,packages.bib}
 
