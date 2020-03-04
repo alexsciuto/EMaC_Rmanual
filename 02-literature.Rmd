@@ -1,3 +1,123 @@
-# Literature
+# Introduction to Data Wrangling
 
-Here is a review of existing methods.
+To introduce data wrangling, we will be working with a dataset from a study conducted in our lab. Here are the details of the study in order to understand the data manipulation more: 
+
+
+## The study
+
+On each trial in this experiment (n = 174), each participant (n = 84) sees a target word very briefly (e.g., word) and then is prompted to select which of two letters was in a particular position of that word (e.g., _ _ _ ↓) - one letter was in the presented word (e.g., D) and the other letter is in an orthographic neighbor of the word (e.g., K). This is a 2 (visual field) x 3 (sentence context) experimental design: the target word is either presented in the fovea (i.e., center of the screen) or the parafovea (i.e., 3 degrees to the right of fixation). Prior to the target word, they see a sentence context presented via Rapid Serial Visual Presentation (RSVP) that constrains to target (i.e., makes the presented word predictable and the orthographic neighbor implausible), constrains to the alternative (i.e., makes the orthographic neighbor predictable and the presented word implausible), or is neutral (i.e., makes neither word predictable but both of them plausible). In addition, we collect data about the individual subjects’ language ability (i.e., their z-score on some test relative to the other participants), including spelling recognition (i.e., circle which words are spelled wrong), spelling dictation (i.e., write out words that they hear said), and phonological decoding (i.e., read aloud a list of words and a list of nonwords), and information about the lexical properties of the words (e.g., word frequency, cloze probability, orthographic neighborhood size, phonological neighborhood size, clustering coefficient, orthographic similarity to other words, which of the two words is higher frequency).
+
+## Loading in Data
+
+### Loading Packages
+
+Before we start wrangling the data, we need to load in the packages we are using. In this lab, most of the data wrangling tools we will be using will be located in the `tidyverse()` package. What is a package? It is simply a group of functions that group of developers made that makes computations easier. To learn more about the `tidyverse` package, you may click on this [link](https://www.tidyverse.org/) and read on it! For the data wrangling we will be doing in this section, we will be primarily using a package within tidyverse called `dplyr`. to load in the package, simply type in the following code. What this code is saying is IF you don't have the `tidyverse` installed, THEN install the package. After that, load the `tidyverse` with the `library()` function.
+
+```{r include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "C:/Users/alexs/Documents/Github/Emac_Rmanual/") 
+
+library(knitr)
+library(kableExtra)
+library(tidyverse)
+
+```
+
+```{r echo = TRUE, message = FALSE, warning=FALSE}
+if(!require(tidyverse)){
+    install.packages("tidyverse")
+}
+library(tidyverse) 
+
+```
+
+### setting the working directory
+
+Now that we have the packages that we need, we need to load up our directory. What is a directory? It is essentially the folder we will be using to read in files, or export files into. In this directory, we have our data set of interest, `Topgown_Data`
+
+```{r  message = FALSE, warning= FALSE}
+setwd("C:/Users/alexs/Documents/Github/Emac_Rmanual/")
+
+
+```
+
+### Reading in Data
+
+Now that we have our working directory set we can use the `read_csv()` function which requires one minimum argument to work which is the name of your `.csv` file. Here we are setting the variable `mydata` to the contents within the `.csv` file. It stores the contents of `Topgown_Data.csv` in what is called a data frame. What is a dataframe? it is simply a matrix where each row constitutes a variable (which can be any type you want), and rows are observations.
+
+```{r  message = FALSE, warning=FALSE}
+mydata = read_csv("TopGown_Data.csv")
+```
+
+```{r echo = FALSE, message = FALSE, warning=FALSE}
+
+mydata[0:10,] %>% knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px") 
+```
+
+## Dplyr() Package
+
+We will now be wrangling this new dataset we imported into R using several `dplyr` functions. These are the ones we will be covering. In the following sections I will explain what each functions does in detial.
+
+| Function| Description   |    
+|:-------------:|-------------|
+|select()| keeps only the variables you mention|
+|arrange()|Order table rows by an expression involving its variables|
+|filter()|choose rows/cases where conditions are true.|
+|mutate()|adds new variables and preserves existing ones|
+|summarize()|Create new variables summarizing the variables of an existing table|
+|group_by()|takes an existing table and converts it into a grouped table where operations are performed "by group"|
+
+### select()
+
+For this particular experiment we have two independent variables of interest: `visual_field` and `constrained_to`; and four participant variables of interest: `zTOWRE_Word`,`zTOWRE_Nonword`,	`zSpelling_Dictation`,`zSpelling_Recogntion`. What if we are only interested in these variables, and we don't particularly need word level variables such as `ortho_N`, or `phono_N`. We can then select these variables.
+
+
+For this particular function, the first argument is going to be the dataset of interest. the dataset for we will be selecting from is `mydata`. The following arguments are simply the columns you would like to keep. 
+
+```{r message = FALSE, warning=FALSE}
+
+dplyr::select(mydata, Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,	zSpelling_Dictation,zSpelling_Recogntion)
+
+```
+
+```{r echo = FALSE, message = FALSE, warning=FALSE}
+
+mydata[0:10,] %>% dplyr::select(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,	zSpelling_Dictation,zSpelling_Recogntion) %>%
+  knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px")
+
+```
+
+#### The Pipe (%>*%)
+
+However, another way I would suggest writing code like this is to use a function in the `tidyverse` called the pipe (`%>%`). Like the `select()` function, the first argument in all `tidyverse` functions will be your dataset of interest. The pipe simply gets a dataset, and pushes it into the first argument of a function. Here is an example.
+
+```{r message = FALSE, warning=FALSE, results='hide'}
+
+mydata %>% dplyr::select(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,	zSpelling_Dictation,zSpelling_Recogntion) %>%
+  dplyr::select(Participants, visual_field, constrained_to)
+  
+
+```
+
+
+```{r echo = FALSE, message = FALSE, warning=FALSE}
+
+mydata[0:10,] %>% dplyr::select(Participants, visual_field, constrained_to) %>%
+  knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px")
+
+```
+
+In this regard, the pipe follows simple logic. Once a dataset is manipulated by one function, you pass it to the next function. s
+
+### arrange()
+
+Let us say that we are interested in the word freqeuncy and orthographic neighborhood size of a particular target word. we can arrange the these variables so we can display the most frequent words going in ascending order, and the words with the smallest orthographic neighborhood size in descending order.
+
+
+
