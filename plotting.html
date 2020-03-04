@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="introduction-to-data-wrangling.html"/>
-<link rel="next" href="applications.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -135,12 +135,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1" data-path="plotting.html"><a href="plotting.html#ggplot-grammar"><i class="fa fa-check"></i><b>4.1</b> ggplot grammar</a></li>
 <li class="chapter" data-level="4.2" data-path="plotting.html"><a href="plotting.html#example-scatterplot-grammar"><i class="fa fa-check"></i><b>4.2</b> Example: Scatterplot grammar</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -209,6 +203,47 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Word Frequency of Target Word&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># this line sets the label for y-axis</span>
 <span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Word Frequency and Orthographic Neighborhood Size Scatter Plot&quot;</span>) <span class="co"># this sets the title for the plot</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Grammar Component</th>
+<th align="center">Specification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">data</td>
+<td align="center">mydata</td>
+</tr>
+<tr class="even">
+<td align="center">aesthetic mapping</td>
+<td align="center">x: OrthoN_T, y: Freq_T</td>
+</tr>
+<tr class="odd">
+<td align="center">geometric object</td>
+<td align="center">points</td>
+</tr>
+<tr class="even">
+<td align="center">scale</td>
+<td align="center">x: linear, y: linear</td>
+</tr>
+<tr class="odd">
+<td align="center">statistical transform</td>
+<td align="center">none</td>
+</tr>
+<tr class="even">
+<td align="center">coordinate system</td>
+<td align="center">rectangular</td>
+</tr>
+<tr class="odd">
+<td align="center">facetting</td>
+<td align="center">none</td>
+</tr>
+</tbody>
+</table>
+
+
+
 
 </div>
 </div>
@@ -217,8 +252,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="introduction-to-data-wrangling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="applications.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-data-wrangling.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
