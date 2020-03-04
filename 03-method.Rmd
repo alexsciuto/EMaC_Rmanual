@@ -91,7 +91,6 @@ Let us say that we want to ask very, very specific questions about how some word
 
 mydata %>% ggplot(aes(x = Freq_T)) + 
   geom_histogram(bins = 20, alpha = .7) + 
-  theme_update(plot.title = element_text(hjust = 0.5)) +  
   xlab("Word Frequency of Target Word") + 
   ylab("Count") + 
   ggtitle("Word Frequency Distribution for Target Words") + 
@@ -117,11 +116,11 @@ Let us say that we want to explore the same question from before, but we felt li
 ```{r results = 'hide', message = FALSE, warning= FALSE}
 
 mydata %>% ggplot(aes(x = Freq_T)) + 
-  geom_density(aes(fill=factor(probe_position), alpha = 0.05)) + 
-  theme_update(plot.title = element_text(hjust = 0.5)) +  
+  geom_density(aes(fill = factor(probe_position), alpha = 0.05)) + 
   xlab("Word Frequency of Target Word") + 
   ylab("Count") + 
   ggtitle("Word Frequency Distribution for Target Words") + 
+  scale_fill_discrete(name = "Probe Position", labels = c("1", "2", "3", "4")) +
   theme_classic() 
   
 
