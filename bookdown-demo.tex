@@ -116,6 +116,20 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 
 \title{The EMaC R Manual}
 \author{Alex Sciuto}
@@ -280,6 +294,1135 @@ way. For this example, we will be working with the function
 \texttt{if\_else()}. However, one question you may have is what is a
 function in R? I will describe the structure of functions, starting with
 a simple one.
+
+\chapter{Introduction to Data
+Wrangling}\label{introduction-to-data-wrangling}
+
+To introduce data wrangling, we will be working with a dataset from a
+study conducted in our lab. Here are the details of the study in order
+to understand the data manipulation more:
+
+\section{The study}\label{the-study}
+
+On each trial in this experiment (n = 174), each participant (n = 84)
+sees a target word very briefly (e.g., word) and then is prompted to
+select which of two letters was in a particular position of that word
+(e.g., \_ \_ \_ ↓) - one letter was in the presented word (e.g., D) and
+the other letter is in an orthographic neighbor of the word (e.g., K).
+This is a 2 (visual field) x 3 (sentence context) experimental design:
+the target word is either presented in the fovea (i.e., center of the
+screen) or the parafovea (i.e., 3 degrees to the right of fixation).
+Prior to the target word, they see a sentence context presented via
+Rapid Serial Visual Presentation (RSVP) that constrains to target (i.e.,
+makes the presented word predictable and the orthographic neighbor
+implausible), constrains to the alternative (i.e., makes the
+orthographic neighbor predictable and the presented word implausible),
+or is neutral (i.e., makes neither word predictable but both of them
+plausible). In addition, we collect data about the individual subjects'
+language ability (i.e., their z-score on some test relative to the other
+participants), including spelling recognition (i.e., circle which words
+are spelled wrong), spelling dictation (i.e., write out words that they
+hear said), and phonological decoding (i.e., read aloud a list of words
+and a list of nonwords), and information about the lexical properties of
+the words (e.g., word frequency, cloze probability, orthographic
+neighborhood size, phonological neighborhood size, clustering
+coefficient, orthographic similarity to other words, which of the two
+words is higher frequency).
+
+\section{Loading in Data}\label{loading-in-data}
+
+\subsection{Loading Packages}\label{loading-packages}
+
+Before we start wrangling the data, we need to load in the packages we
+are using. In this lab, most of the data wrangling tools we will be
+using will be located in the \texttt{tidyverse()} package. What is a
+package? It is simply a group of functions that group of developers made
+that makes computations easier. To learn more about the
+\texttt{tidyverse} package, you may click on this
+\href{https://www.tidyverse.org/}{link} and read on it! For the data
+wrangling we will be doing in this section, we will be primarily using a
+package within tidyverse called \texttt{dplyr}. to load in the package,
+simply type in the following code. What this code is saying is IF you
+don't have the \texttt{tidyverse} installed, THEN install the package.
+After that, load the \texttt{tidyverse} with the \texttt{library()}
+function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\KeywordTok{require}\NormalTok{(tidyverse))\{}
+    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\NormalTok{\}}
+\KeywordTok{library}\NormalTok{(tidyverse) }
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"kableExtra"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Installing package into '/home/travis/R/Library'
+## (as 'lib' is unspecified)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(kableExtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'kableExtra'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     group_rows
+\end{verbatim}
+
+\subsection{setting the working
+directory}\label{setting-the-working-directory}
+
+Now that we have the packages that we need, we need to load up our
+directory. What is a directory? It is essentially the folder we will be
+using to read in files, or export files into. In this directory, we have
+our data set of interest, \texttt{Topgown\_Data}
+
+\subsection{Reading in Data}\label{reading-in-data}
+
+Now that we have our working directory set we can use the
+\texttt{read\_csv()} function which requires one minimum argument to
+work which is the name of your \texttt{.csv} file. Here we are setting
+the variable \texttt{mydata} to the contents within the \texttt{.csv}
+file. It stores the contents of \texttt{Topgown\_Data.csv} in what is
+called a data frame. What is a dataframe? it is simply a matrix where
+each row constitutes a variable (which can be any type you want), and
+rows are observations.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata =}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"TopGown_Data.csv"}\NormalTok{, }\DataTypeTok{skip_empty_rows =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Missing column names filled in: 'X1' [1]
+\end{verbatim}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   Participants = col_character(),
+##   visual_field = col_character(),
+##   constrained_to = col_character(),
+##   presented_word = col_character(),
+##   predicted_word = col_character(),
+##   question = col_character(),
+##   correct_answer = col_character(),
+##   Higher_Freq = col_character()
+## )
+\end{verbatim}
+
+\begin{verbatim}
+## See spec(...) for full column specifications.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,] }\OperatorTok{%>%}\StringTok{ }\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\StringTok{"html"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{kable_styling}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\DataTypeTok{full_width =}\NormalTok{ F) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{scroll_box}\NormalTok{(}\DataTypeTok{height =} \StringTok{"500px"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+X1
+
+Participants
+
+visual\_field
+
+constrained\_to
+
+presented\_word
+
+predicted\_word
+
+question
+
+correct\_answer
+
+item\_pair
+
+Items
+
+probe\_position
+
+RT
+
+accuracy
+
+zTOWRE\_Word
+
+zTOWRE\_Nonword
+
+zSpelling\_Dictation
+
+zSpelling\_Recogntion
+
+zAll
+
+zSpell
+
+zTOWRE
+
+OrthoN\_T
+
+OrthoCC\_T
+
+PhonoN\_T
+
+Freq\_T
+
+Freq\_P
+
+OrthoCC\_P
+
+OLD
+
+Higher\_Freq
+
+1
+
+tg011
+
+Fovea
+
+A
+
+cage
+
+cape
+
+NA
+
+NA
+
+19
+
+37
+
+3
+
+2986.73
+
+1
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+-0.1535705
+
+0.531627
+
+-0.838768
+
+13
+
+0.0000001
+
+17
+
+9.048
+
+8.605
+
+0.0000000
+
+1.10
+
+Target
+
+2
+
+tg011
+
+Parafovea
+
+N
+
+ache
+
+acne
+
+Were they very frustrated?
+
+Y
+
+83
+
+165
+
+3
+
+4146.67
+
+1
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+-0.1535705
+
+0.531627
+
+-0.838768
+
+3
+
+1.5000000
+
+23
+
+6.741
+
+6.284
+
+1.5000000
+
+1.75
+
+Target
+
+3
+
+tg011
+
+Fovea
+
+A
+
+male
+
+sale
+
+NA
+
+NA
+
+37
+
+73
+
+1
+
+2496.54
+
+1
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+-0.1535705
+
+0.531627
+
+-0.838768
+
+27
+
+0.0000000
+
+59
+
+10.978
+
+11.466
+
+0.0000000
+
+1.00
+
+Alternative
+
+4
+
+tg011
+
+Fovea
+
+A
+
+leaf
+
+loaf
+
+NA
+
+NA
+
+70
+
+139
+
+2
+
+1845.46
+
+1
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+-0.1535705
+
+0.531627
+
+-0.838768
+
+9
+
+0.0500000
+
+29
+
+8.861
+
+7.109
+
+0.5000000
+
+1.75
+
+Target
+
+5
+
+tg011
+
+Parafovea
+
+T
+
+step
+
+stop
+
+NA
+
+NA
+
+7
+
+14
+
+3
+
+2125.17
+
+1
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+-0.1535705
+
+0.531627
+
+-0.838768
+
+7
+
+0.1666667
+
+11
+
+10.691
+
+11.478
+
+0.0416667
+
+1.50
+
+Alternative
+
+6
+
+tg011
+
+Fovea
+
+N
+
+mint
+
+mind
+
+NA
+
+NA
+
+24
+
+48
+
+4
+
+1415.47
+
+1
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+-0.1535705
+
+0.531627
+
+-0.838768
+
+16
+
+0.0000005
+
+17
+
+11.344
+
+11.784
+
+0.0000001
+
+1.25
+
+Alternative
+
+7
+
+tg011
+
+Parafovea
+
+A
+
+cast
+
+case
+
+NA
+
+NA
+
+20
+
+40
+
+4
+
+3168.45
+
+1
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+-0.1535705
+
+0.531627
+
+-0.838768
+
+19
+
+0.0000000
+
+28
+
+10.102
+
+12.204
+
+0.0000000
+
+1.00
+
+Alternative
+
+8
+
+tg011
+
+Fovea
+
+A
+
+golf
+
+wolf
+
+NA
+
+NA
+
+76
+
+151
+
+1
+
+3765.47
+
+1
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+-0.1535705
+
+0.531627
+
+-0.838768
+
+4
+
+0.0000000
+
+2
+
+9.254
+
+9.979
+
+0.0000000
+
+1.90
+
+Alternative
+
+9
+
+tg011
+
+Fovea
+
+N
+
+mane
+
+maze
+
+NA
+
+NA
+
+3
+
+6
+
+3
+
+1503.80
+
+1
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+-0.1535705
+
+0.531627
+
+-0.838768
+
+27
+
+0.0000000
+
+59
+
+6.238
+
+8.775
+
+0.0000001
+
+1.25
+
+Alternative
+
+10
+
+tg011
+
+Parafovea
+
+N
+
+name
+
+fame
+
+NA
+
+NA
+
+17
+
+33
+
+1
+
+1565.79
+
+1
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+-0.1535705
+
+0.531627
+
+-0.838768
+
+11
+
+0.0041667
+
+21
+
+12.604
+
+8.714
+
+0.0000000
+
+1.15
+
+Target
+
+\section{Dplyr() Package}\label{dplyr-package}
+
+We will now be wrangling this new dataset we imported into R using
+several \texttt{dplyr} functions. These are the ones we will be
+covering. In the following sections I will explain what each functions
+does in detial.
+
+\begin{longtable}[]{@{}cl@{}}
+\toprule
+\begin{minipage}[b]{0.21\columnwidth}\centering\strut
+Function\strut
+\end{minipage} & \begin{minipage}[b]{0.18\columnwidth}\raggedright\strut
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.21\columnwidth}\centering\strut
+select()\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+keeps only the variables you mention\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.21\columnwidth}\centering\strut
+arrange()\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+Order table rows by an expression involving its variables\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.21\columnwidth}\centering\strut
+filter()\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+choose rows/cases where conditions are true.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.21\columnwidth}\centering\strut
+mutate()\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+adds new variables and preserves existing ones\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.21\columnwidth}\centering\strut
+summarize()\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+Create new variables summarizing the variables of an existing
+table\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.21\columnwidth}\centering\strut
+group\_by()\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+takes an existing table and converts it into a grouped table where
+operations are performed ``by group''\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsection{select()}\label{select}
+
+For this particular experiment we have two independent variables of
+interest: \texttt{visual\_field} and \texttt{constrained\_to}; and four
+participant variables of interest:
+\texttt{zTOWRE\_Word},\texttt{zTOWRE\_Nonword},
+\texttt{zSpelling\_Dictation},\texttt{zSpelling\_Recogntion}. What if we
+are only interested in these variables, and we don't particularly need
+word level variables such as \texttt{ortho\_N}, or \texttt{phono\_N}. We
+can then select these variables.
+
+For this particular function, the first argument is going to be the
+dataset of interest. the dataset for we will be selecting from is
+\texttt{mydata}. The following arguments are simply the columns you
+would like to keep.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(mydata, Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,   zSpelling_Dictation,zSpelling_Recogntion)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 14,004 x 7
+##    Participants visual_field constrained_to zTOWRE_Word zTOWRE_Nonword
+##    <chr>        <chr>        <chr>                <dbl>          <dbl>
+##  1 tg011        Fovea        A                    -1.75         0.0718
+##  2 tg011        Parafovea    N                    -1.75         0.0718
+##  3 tg011        Fovea        A                    -1.75         0.0718
+##  4 tg011        Fovea        A                    -1.75         0.0718
+##  5 tg011        Parafovea    T                    -1.75         0.0718
+##  6 tg011        Fovea        N                    -1.75         0.0718
+##  7 tg011        Parafovea    A                    -1.75         0.0718
+##  8 tg011        Fovea        A                    -1.75         0.0718
+##  9 tg011        Fovea        N                    -1.75         0.0718
+## 10 tg011        Parafovea    N                    -1.75         0.0718
+## # ... with 13,994 more rows, and 2 more variables: zSpelling_Dictation <dbl>,
+## #   zSpelling_Recogntion <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,] }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword, zSpelling_Dictation,zSpelling_Recogntion) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\StringTok{"html"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{kable_styling}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\DataTypeTok{full_width =}\NormalTok{ F) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{scroll_box}\NormalTok{(}\DataTypeTok{height =} \StringTok{"500px"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Participants
+
+visual\_field
+
+constrained\_to
+
+zTOWRE\_Word
+
+zTOWRE\_Nonword
+
+zSpelling\_Dictation
+
+zSpelling\_Recogntion
+
+tg011
+
+Fovea
+
+A
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+tg011
+
+Parafovea
+
+N
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+tg011
+
+Fovea
+
+A
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+tg011
+
+Fovea
+
+A
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+tg011
+
+Parafovea
+
+T
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+tg011
+
+Fovea
+
+N
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+tg011
+
+Parafovea
+
+A
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+tg011
+
+Fovea
+
+A
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+tg011
+
+Fovea
+
+N
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+tg011
+
+Parafovea
+
+N
+
+-1.749307
+
+0.071771
+
+-0.0918699
+
+1.155124
+
+\subsubsection{The Pipe (\%\textgreater{}*\%)}\label{the-pipe}
+
+However, another way I would suggest writing code like this is to use a
+function in the \texttt{tidyverse} called the pipe
+(\texttt{\%\textgreater{}\%}). Like the \texttt{select()} function, the
+first argument in all \texttt{tidyverse} functions will be your dataset
+of interest. The pipe simply gets a dataset, and pushes it into the
+first argument of a function. Here is an example.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,    zSpelling_Dictation,zSpelling_Recogntion) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, visual_field, constrained_to)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 14,004 x 3
+##    Participants visual_field constrained_to
+##    <chr>        <chr>        <chr>         
+##  1 tg011        Fovea        A             
+##  2 tg011        Parafovea    N             
+##  3 tg011        Fovea        A             
+##  4 tg011        Fovea        A             
+##  5 tg011        Parafovea    T             
+##  6 tg011        Fovea        N             
+##  7 tg011        Parafovea    A             
+##  8 tg011        Fovea        A             
+##  9 tg011        Fovea        N             
+## 10 tg011        Parafovea    N             
+## # ... with 13,994 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{,] }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, visual_field, constrained_to) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\StringTok{"html"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{kable_styling}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\DataTypeTok{full_width =}\NormalTok{ F) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{kableExtra}\OperatorTok{::}\KeywordTok{scroll_box}\NormalTok{(}\DataTypeTok{height =} \StringTok{"500px"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Participants
+
+visual\_field
+
+constrained\_to
+
+tg011
+
+Fovea
+
+A
+
+tg011
+
+Parafovea
+
+N
+
+tg011
+
+Fovea
+
+A
+
+tg011
+
+Fovea
+
+A
+
+tg011
+
+Parafovea
+
+T
+
+tg011
+
+Fovea
+
+N
+
+tg011
+
+Parafovea
+
+A
+
+tg011
+
+Fovea
+
+A
+
+tg011
+
+Fovea
+
+N
+
+tg011
+
+Parafovea
+
+N
+
+In this regard, the pipe follows simple logic. Once a dataset is
+manipulated by one function, you pass it to the next function.
+
+\subsection{arrange()}\label{arrange}
+
+Let us say that we are interested in the word freqeuncy and orthographic
+neighborhood size of a particular target word. we can arrange the these
+variables so we can display the most frequent words going in ascending
+order, and the words with the smallest orthographic neighborhood size in
+descending order.
 
 \chapter{Methods}\label{methods}
 

@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="methods.html"/>
+<link rel="next" href="introduction-to-data-wrangling.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,6 +49,7 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
@@ -115,12 +116,24 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#logical-operators-if-statements"><i class="fa fa-check"></i><b>2.2</b> Logical Operators &amp; if-Statements</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>3</b> Methods</a></li>
-<li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications</a><ul>
-<li class="chapter" data-level="4.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>4.1</b> Example one</a></li>
-<li class="chapter" data-level="4.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>4.2</b> Example two</a></li>
+<li class="chapter" data-level="3" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html"><i class="fa fa-check"></i><b>3</b> Introduction to Data Wrangling</a><ul>
+<li class="chapter" data-level="3.1" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#the-study"><i class="fa fa-check"></i><b>3.1</b> The study</a></li>
+<li class="chapter" data-level="3.2" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#loading-in-data"><i class="fa fa-check"></i><b>3.2</b> Loading in Data</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#loading-packages"><i class="fa fa-check"></i><b>3.2.1</b> Loading Packages</a></li>
+<li class="chapter" data-level="3.2.2" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#setting-the-working-directory"><i class="fa fa-check"></i><b>3.2.2</b> setting the working directory</a></li>
+<li class="chapter" data-level="3.2.3" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#reading-in-data"><i class="fa fa-check"></i><b>3.2.3</b> Reading in Data</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>5</b> Final Words</a></li>
+<li class="chapter" data-level="3.3" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#dplyr-package"><i class="fa fa-check"></i><b>3.3</b> Dplyr() Package</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#select"><i class="fa fa-check"></i><b>3.3.1</b> select()</a></li>
+<li class="chapter" data-level="3.3.2" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#arrange"><i class="fa fa-check"></i><b>3.3.2</b> arrange()</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
+<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
+<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
+<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -286,7 +299,6 @@ x[<span class="dv">4</span>]</code></pre></div>
 </table>
 <p>Now that you have a basic understanding of logical operators, we can use them in order to specify code to manipulate variables in a particular way. For this example, we will be working with the function <code>if_else()</code>. However, one question you may have is what is a function in R? I will describe the structure of functions, starting with a simple one.</p>
 
-
 </div>
 </div>
             </section>
@@ -295,7 +307,7 @@ x[<span class="dv">4</span>]</code></pre></div>
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="introduction-to-data-wrangling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
