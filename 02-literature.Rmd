@@ -31,7 +31,7 @@ if(!require(tidyverse)){
     install.packages("tidyverse")
 }
 library(tidyverse) 
-install.packages(kableExtra)
+install.packages("kableExtra")
 library(kableExtra)
 ```
 
