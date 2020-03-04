@@ -55,12 +55,11 @@ Let us say that we are interested in how specific word properties relate to one 
 
 mydata %>% ggplot(aes(x = OrthoN_T, y = Freq_T)) + # this defines the x and y axes of the plot
   geom_point() + # this adds geometric objects
-  theme_classic() + # this sets the theme for the plot
   theme_update(plot.title = element_text(hjust = 0.5)) + # this line centers the title
   xlab("Orthographic Neighborhood Size of Target Word") + # this line sets the label for x-axis
   ylab("Word Frequency of Target Word") + # this line sets the label for y-axis
-  ggtitle("Word Frequency and Orthographic Neighborhood Size Scatter Plot") # this sets the title for the plot
-
+  ggtitle("Word Frequency and Orthographic Neighborhood Size Scatter Plot") + # this sets the title for the plot 
+  theme_classic() # this sets the theme for the plot
 ```
   
 |Grammar Component|Specification|
@@ -92,12 +91,13 @@ Let us say that we want to make sure our linguistic stimuli is balanced across s
 
 mydata %>% ggplot(aes(x = OrthoN_T, fill = constrained_to)) + 
   geom_histogram(bins = 20, alpha = .7) + 
-  theme_classic() + 
   theme_update(plot.title = element_text(hjust = 0.5)) +  
   scale_fill_discrete(name  ="Sentence Constraint", labels=c("Alternative", "Neutral", "Target")) +
   xlab("Word Frequency of Target Word") + 
   ylab("Count") + 
-  ggtitle("Word Frequency Distribution for Target Words") 
+  ggtitle("Word Frequency Distribution for Target Words") + 
+  theme_classic() 
+  
 
 ```
 
