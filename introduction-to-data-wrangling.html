@@ -125,7 +125,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#dplyr-package"><i class="fa fa-check"></i><b>3.3</b> Dplyr() Package</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#select"><i class="fa fa-check"></i><b>3.3.1</b> select()</a></li>
-<li class="chapter" data-level="3.3.2" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#arrange"><i class="fa fa-check"></i><b>3.3.2</b> arrange()</a></li>
+<li class="chapter" data-level="3.3.2" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#group_by-summarise"><i class="fa fa-check"></i><b>3.3.2</b> group_by() &amp; summarise()</a></li>
+<li class="chapter" data-level="3.3.3" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#arrange"><i class="fa fa-check"></i><b>3.3.3</b> arrange()</a></li>
+<li class="chapter" data-level="3.3.4" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#filter"><i class="fa fa-check"></i><b>3.3.4</b> filter()</a></li>
+<li class="chapter" data-level="3.3.5" data-path="introduction-to-data-wrangling.html"><a href="introduction-to-data-wrangling.html#mutate"><i class="fa fa-check"></i><b>3.3.5</b> mutate()</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
@@ -1156,6 +1159,14 @@ Target
 <td>keeps only the variables you mention</td>
 </tr>
 <tr class="even">
+<td align="center">summarize()</td>
+<td>Create new variables summarizing the variables of an existing table</td>
+</tr>
+<tr class="odd">
+<td align="center">group_by()</td>
+<td>takes an existing table and converts it into a grouped table where operations are performed “by group”</td>
+</tr>
+<tr class="even">
 <td align="center">arrange()</td>
 <td>Order table rows by an expression involving its variables</td>
 </tr>
@@ -1166,14 +1177,6 @@ Target
 <tr class="even">
 <td align="center">mutate()</td>
 <td>adds new variables and preserves existing ones</td>
-</tr>
-<tr class="odd">
-<td align="center">summarize()</td>
-<td>Create new variables summarizing the variables of an existing table</td>
-</tr>
-<tr class="even">
-<td align="center">group_by()</td>
-<td>takes an existing table and converts it into a grouped table where operations are performed “by group”</td>
 </tr>
 </tbody>
 </table>
@@ -1580,9 +1583,522 @@ N
 <p>In this regard, the pipe follows simple logic. Once a dataset is manipulated by one function, you pass it to the next function.</p>
 </div>
 </div>
+<div id="group_by-summarise" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> group_by() &amp; summarise()</h3>
+<p>However, let us say we are particularly interested in the values of one variable. For example, word properties. Therefore, we would need to compile a new dataset that summarizes word properties, such as orthographic neighborhood size. So in this example we will create a dataframe summarized by the presented word.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, visual_field, constrained_to, presented_word, OrthoN_T) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(presented_word) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">OrthoN_T =</span> <span class="kw">mean</span>(OrthoN_T))</code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+presented_word
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+OrthoN_T
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ache
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+acne
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ants
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+arts
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+aunt
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ball
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bats
+</td>
+<td style="text-align:right;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+beef
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bees
+</td>
+<td style="text-align:right;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bell
+</td>
+<td style="text-align:right;">
+15
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="arrange" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> arrange()</h3>
-<p>Let us say that we are interested in the word freqeuncy and orthographic neighborhood size of a particular target word. we can arrange the these variables so we can display the most frequent words going in ascending order, and the words with the smallest orthographic neighborhood size in descending order.</p>
+<h3><span class="header-section-number">3.3.3</span> arrange()</h3>
+<p>Let us say that we are still interested in neighborhood size of a particular target word. we can arrange the these variables so we can display the the words from lowest orthographic neighborhood size to higher orthographic neighborhood size. For this we can use the arrange function, which sorts a particular variable of interest in ascending or descending order.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, visual_field, constrained_to, presented_word, OrthoN_T, Freq_T) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(presented_word) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">OrthoN_T =</span> <span class="kw">mean</span>(OrthoN_T)) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(OrthoN_T)</code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+presented_word
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+OrthoN_T
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ache
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+film
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gyms
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wolf
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+womb
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+acne
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+clue
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+debt
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+drum
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+golf
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="filter" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> filter()</h3>
+<p>Let us say that not only are we interested in orthographic neigbhorhood size, but we want to know orthographic neighborhood size for a particular condition in our study. We can then use the <code>filter()</code> function, and only keep the trails that are within the condition of interest. For this example, we are interested when the sentence is constraining toward the target word and when the target word is presented in the parafovea.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, visual_field, constrained_to, presented_word, OrthoN_T, Freq_T) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(visual_field <span class="op">==</span><span class="st"> &quot;Parafovea&quot;</span> <span class="op">&amp;</span><span class="st"> </span>constrained_to <span class="op">==</span><span class="st"> &quot;T&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(presented_word, visual_field, constrained_to) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">OrthoN_T =</span> <span class="kw">mean</span>(OrthoN_T)) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">arrange</span>(OrthoN_T)</code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+presented_word
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+visual_field
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+constrained_to
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+OrthoN_T
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+ache
+</td>
+<td style="text-align:left;">
+Parafovea
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+film
+</td>
+<td style="text-align:left;">
+Parafovea
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+gyms
+</td>
+<td style="text-align:left;">
+Parafovea
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wolf
+</td>
+<td style="text-align:left;">
+Parafovea
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+womb
+</td>
+<td style="text-align:left;">
+Parafovea
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+acne
+</td>
+<td style="text-align:left;">
+Parafovea
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+clue
+</td>
+<td style="text-align:left;">
+Parafovea
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+debt
+</td>
+<td style="text-align:left;">
+Parafovea
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+drum
+</td>
+<td style="text-align:left;">
+Parafovea
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+golf
+</td>
+<td style="text-align:left;">
+Parafovea
+</td>
+<td style="text-align:left;">
+T
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="mutate" class="section level3">
+<h3><span class="header-section-number">3.3.5</span> mutate()</h3>
+<p>Let us say that we are not only interested in word properties like orthographic neighborhood size, but also the spelling ability of particular participants. In this study we have four spelling tests, which were measured through the following variables: <code>zTowre_Word</code>, <code>zTowre_Nonword</code>, <code>Spelling_Dictation</code>, <code>Spelling_Recogntion</code>. However, these are a lot of measures. what if we wanted to know the average between all of these measures for each participant? we can use the mutate function to do this.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, zTOWRE_Word, zTOWRE_Nonword, zSpelling_Dictation, zSpelling_Recogntion) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(Participants) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">summarise</span>(<span class="dt">zTOWRE_Word =</span> <span class="kw">mean</span>(zTOWRE_Word), 
+                   <span class="dt">zTOWRE_Nonword =</span> <span class="kw">mean</span>(zTOWRE_Nonword), 
+                   <span class="dt">zSpelling_Dictation =</span> <span class="kw">mean</span>(zSpelling_Dictation), 
+                   <span class="dt">zSpelling_Recogntion =</span> <span class="kw">mean</span>(zSpelling_Recogntion)) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">mutate</span>(<span class="dt">aggregated_spelling =</span> ((zTOWRE_Word <span class="op">+</span><span class="st"> </span>zTOWRE_Nonword <span class="op">+</span><span class="st"> </span>zSpelling_Dictation <span class="op">+</span><span class="st"> </span>zSpelling_Recogntion)<span class="op">/</span><span class="dv">4</span>))</code></pre></div>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Participants
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+zTOWRE_Word
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+zTOWRE_Nonword
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+zSpelling_Dictation
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+zSpelling_Recogntion
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+aggregated_spelling
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+derp033
+</td>
+<td style="text-align:right;">
+1.6354380
+</td>
+<td style="text-align:right;">
+0.7156786
+</td>
+<td style="text-align:right;">
+0.8383130
+</td>
+<td style="text-align:right;">
+1.3936520
+</td>
+<td style="text-align:right;">
+1.1457704
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+derp044
+</td>
+<td style="text-align:right;">
+-0.6333223
+</td>
+<td style="text-align:right;">
+0.5317050
+</td>
+<td style="text-align:right;">
+-0.0918699
+</td>
+<td style="text-align:right;">
+-0.7923070
+</td>
+<td style="text-align:right;">
+-0.2464486
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+derp055
+</td>
+<td style="text-align:right;">
+0.2251274
+</td>
+<td style="text-align:right;">
+0.6236918
+</td>
+<td style="text-align:right;">
+-0.7895071
+</td>
+<td style="text-align:right;">
+0.2705651
+</td>
+<td style="text-align:right;">
+0.0824693
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+derp066
+</td>
+<td style="text-align:right;">
+-1.1483920
+</td>
+<td style="text-align:right;">
+-1.1240570
+</td>
+<td style="text-align:right;">
+-2.8824190
+</td>
+<td style="text-align:right;">
+-1.4607150
+</td>
+<td style="text-align:right;">
+-1.6538958
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+derp071
+</td>
+<td style="text-align:right;">
+-0.3757874
+</td>
+<td style="text-align:right;">
+-0.1122026
+</td>
+<td style="text-align:right;">
+0.6057672
+</td>
+<td style="text-align:right;">
+0.6449458
+</td>
+<td style="text-align:right;">
+0.1906808
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 </div>
 </div>

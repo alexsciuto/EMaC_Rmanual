@@ -1011,6 +1011,18 @@ select()\strut
 keeps only the variables you mention\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.21\columnwidth}\centering\strut
+summarize()\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+Create new variables summarizing the variables of an existing
+table\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.21\columnwidth}\centering\strut
+group\_by()\strut
+\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+takes an existing table and converts it into a grouped table where
+operations are performed ``by group''\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.21\columnwidth}\centering\strut
 arrange()\strut
 \end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
 Order table rows by an expression involving its variables\strut
@@ -1024,18 +1036,6 @@ choose rows/cases where conditions are true.\strut
 mutate()\strut
 \end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
 adds new variables and preserves existing ones\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.21\columnwidth}\centering\strut
-summarize()\strut
-\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
-Create new variables summarizing the variables of an existing
-table\strut
-\end{minipage}\tabularnewline
-\begin{minipage}[t]{0.21\columnwidth}\centering\strut
-group\_by()\strut
-\end{minipage} & \begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
-takes an existing table and converts it into a grouped table where
-operations are performed ``by group''\strut
 \end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
@@ -1301,13 +1301,331 @@ N
 In this regard, the pipe follows simple logic. Once a dataset is
 manipulated by one function, you pass it to the next function.
 
+\subsection{group\_by() \& summarise()}\label{group_by-summarise}
+
+However, let us say we are particularly interested in the values of one
+variable. For example, word properties. Therefore, we would need to
+compile a new dataset that summarizes word properties, such as
+orthographic neighborhood size. So in this example we will create a
+dataframe summarized by the presented word.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, visual_field, constrained_to, presented_word, OrthoN_T) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(presented_word) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{OrthoN_T =} \KeywordTok{mean}\NormalTok{(OrthoN_T))}
+\end{Highlighting}
+\end{Shaded}
+
+presented\_word
+
+OrthoN\_T
+
+ache
+
+3
+
+acne
+
+4
+
+ants
+
+7
+
+arts
+
+8
+
+aunt
+
+6
+
+ball
+
+20
+
+bats
+
+23
+
+beef
+
+6
+
+bees
+
+20
+
+bell
+
+15
+
 \subsection{arrange()}\label{arrange}
 
-Let us say that we are interested in the word freqeuncy and orthographic
-neighborhood size of a particular target word. we can arrange the these
-variables so we can display the most frequent words going in ascending
-order, and the words with the smallest orthographic neighborhood size in
+Let us say that we are still interested in neighborhood size of a
+particular target word. we can arrange the these variables so we can
+display the the words from lowest orthographic neighborhood size to
+higher orthographic neighborhood size. For this we can use the arrange
+function, which sorts a particular variable of interest in ascending or
 descending order.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, visual_field, constrained_to, presented_word, OrthoN_T, Freq_T) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(presented_word) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{OrthoN_T =} \KeywordTok{mean}\NormalTok{(OrthoN_T)) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{arrange}\NormalTok{(OrthoN_T)}
+\end{Highlighting}
+\end{Shaded}
+
+presented\_word
+
+OrthoN\_T
+
+ache
+
+3
+
+film
+
+3
+
+gyms
+
+3
+
+wolf
+
+3
+
+womb
+
+3
+
+acne
+
+4
+
+clue
+
+4
+
+debt
+
+4
+
+drum
+
+4
+
+golf
+
+4
+
+\subsection{filter()}\label{filter}
+
+Let us say that not only are we interested in orthographic neigbhorhood
+size, but we want to know orthographic neighborhood size for a
+particular condition in our study. We can then use the \texttt{filter()}
+function, and only keep the trails that are within the condition of
+interest. For this example, we are interested when the sentence is
+constraining toward the target word and when the target word is
+presented in the parafovea.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, visual_field, constrained_to, presented_word, OrthoN_T, Freq_T) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(visual_field }\OperatorTok{==}\StringTok{ "Parafovea"} \OperatorTok{&}\StringTok{ }\NormalTok{constrained_to }\OperatorTok{==}\StringTok{ "T"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(presented_word, visual_field, constrained_to) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{OrthoN_T =} \KeywordTok{mean}\NormalTok{(OrthoN_T)) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{arrange}\NormalTok{(OrthoN_T)}
+\end{Highlighting}
+\end{Shaded}
+
+presented\_word
+
+visual\_field
+
+constrained\_to
+
+OrthoN\_T
+
+ache
+
+Parafovea
+
+T
+
+3
+
+film
+
+Parafovea
+
+T
+
+3
+
+gyms
+
+Parafovea
+
+T
+
+3
+
+wolf
+
+Parafovea
+
+T
+
+3
+
+womb
+
+Parafovea
+
+T
+
+3
+
+acne
+
+Parafovea
+
+T
+
+4
+
+clue
+
+Parafovea
+
+T
+
+4
+
+debt
+
+Parafovea
+
+T
+
+4
+
+drum
+
+Parafovea
+
+T
+
+4
+
+golf
+
+Parafovea
+
+T
+
+4
+
+\subsection{mutate()}\label{mutate}
+
+Let us say that we are not only interested in word properties like
+orthographic neighborhood size, but also the spelling ability of
+particular participants. In this study we have four spelling tests,
+which were measured through the following variables:
+\texttt{zTowre\_Word}, \texttt{zTowre\_Nonword},
+\texttt{Spelling\_Dictation}, \texttt{Spelling\_Recogntion}. However,
+these are a lot of measures. what if we wanted to know the average
+between all of these measures for each participant? we can use the
+mutate function to do this.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(Participants, zTOWRE_Word, zTOWRE_Nonword, zSpelling_Dictation, zSpelling_Recogntion) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Participants) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{zTOWRE_Word =} \KeywordTok{mean}\NormalTok{(zTOWRE_Word), }
+                   \DataTypeTok{zTOWRE_Nonword =} \KeywordTok{mean}\NormalTok{(zTOWRE_Nonword), }
+                   \DataTypeTok{zSpelling_Dictation =} \KeywordTok{mean}\NormalTok{(zSpelling_Dictation), }
+                   \DataTypeTok{zSpelling_Recogntion =} \KeywordTok{mean}\NormalTok{(zSpelling_Recogntion)) }\OperatorTok{%>%}
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{aggregated_spelling =}\NormalTok{ ((zTOWRE_Word }\OperatorTok{+}\StringTok{ }\NormalTok{zTOWRE_Nonword }\OperatorTok{+}\StringTok{ }\NormalTok{zSpelling_Dictation }\OperatorTok{+}\StringTok{ }\NormalTok{zSpelling_Recogntion)}\OperatorTok{/}\DecValTok{4}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Participants
+
+zTOWRE\_Word
+
+zTOWRE\_Nonword
+
+zSpelling\_Dictation
+
+zSpelling\_Recogntion
+
+aggregated\_spelling
+
+derp033
+
+1.6354380
+
+0.7156786
+
+0.8383130
+
+1.3936520
+
+1.1457704
+
+derp044
+
+-0.6333223
+
+0.5317050
+
+-0.0918699
+
+-0.7923070
+
+-0.2464486
+
+derp055
+
+0.2251274
+
+0.6236918
+
+-0.7895071
+
+0.2705651
+
+0.0824693
+
+derp066
+
+-1.1483920
+
+-1.1240570
+
+-2.8824190
+
+-1.4607150
+
+-1.6538958
+
+derp071
+
+-0.3757874
+
+-0.1122026
+
+0.6057672
+
+0.6449458
+
+0.1906808
 
 \chapter{Methods}\label{methods}
 
