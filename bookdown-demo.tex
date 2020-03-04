@@ -1782,20 +1782,56 @@ Required aesthetics:
   \texttt{binwidth}: the with of the bins shown on the plot.
 \end{itemize}
 
-Let us say that we want to make sure our linguistic stimuli is balanced
-across specific word properties such as word frequency. We want to know
-if there are too many high frequency words as comparede to low ones, or
-vice versa. So here we are going to plot a histogram displaying the
-distribution of word frequency across items. However, what if we are
-also interested if this varies across sentence constraints? Then we can
-use the \texttt{fill} argument in the \texttt{aes()} call to do this.
+Let us say that we want to ask very, very specific questions about how
+some word properties relate to other word properties. For example, in
+this experiment we change one letter for a given letter position. for
+example (word-work) pair manipulates the 4th letter position while
+(worm-dorm) pair manipulates the 1rst letter position. Let us explore if
+the words in a particular letter position category vary in word
+frequency. The way we can do this is by using the \texttt{facet\_grid()}
+function in \texttt{ggplot}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ OrthoN_T, }\DataTypeTok{fill =}\NormalTok{ constrained_to)) }\OperatorTok{+}\StringTok{ }
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Freq_T)) }\OperatorTok{+}\StringTok{ }
 \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{20}\NormalTok{, }\DataTypeTok{alpha =}\NormalTok{ .}\DecValTok{7}\NormalTok{) }\OperatorTok{+}\StringTok{ }
 \StringTok{  }\KeywordTok{theme_update}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\OperatorTok{+}\StringTok{  }
-\StringTok{  }\KeywordTok{scale_fill_discrete}\NormalTok{(}\DataTypeTok{name  =}\StringTok{"Sentence Constraint"}\NormalTok{, }\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\StringTok{"Alternative"}\NormalTok{, }\StringTok{"Neutral"}\NormalTok{, }\StringTok{"Target"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Word Frequency of Target Word"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Count"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Word Frequency Distribution for Target Words"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\NormalTok{probe_position) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\subsection{Example: Density Grammar}\label{example-density-grammar}
+
+Essentially, a ``smooth'' version of a histogram. Uses kernels to
+produce the curve.
+
+Required aesthetics:
+
+\begin{itemize}
+\item
+  \texttt{x}: A numeric vector. Good to know:
+\item
+  \texttt{bw} argument controls the smoothness: Smaller = rougher.
+\end{itemize}
+
+Let us say that we want to explore the same question from before, but we
+felt like the last graphic wasn't as clear as we would want it to be. We
+could use a different graphing strategy such as the density plot to make
+it clearer to whoever is intepreting the data. Data is only as good as
+you can communicate and understand it. Observe the differences between
+the last code's output and this code's output
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Freq_T)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\KeywordTok{factor}\NormalTok{(probe_position), }\DataTypeTok{alpha =} \FloatTok{0.05}\NormalTok{)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_update}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\OperatorTok{+}\StringTok{  }
 \StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Word Frequency of Target Word"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
 \StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Count"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
 \StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Word Frequency Distribution for Target Words"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
@@ -1803,7 +1839,7 @@ use the \texttt{fill} argument in the \texttt{aes()} call to do this.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-20-1.pdf}
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 \bibliography{book.bib,packages.bib}
 
