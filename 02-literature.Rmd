@@ -23,7 +23,7 @@ library(tidyverse)
 
 ```
 
-```{r echo = TRUE, message = FALSE, warning=FALSE}
+```{r }
 if(!require(tidyverse)){
     install.packages("tidyverse")
 }
@@ -35,12 +35,89 @@ library(tidyverse)
 
 Now that we have the packages that we need, we need to load up our directory. What is a directory? It is essentially the folder we will be using to read in files, or export files into. In this directory, we have our data set of interest, `Topgown_Data`
 
-```{r  echo = TRUE, message = FALSE, warning= FALSE}
+```{r  }
 setwd("C:/Users/alexs/Documents/Github/Emac_Rmanual/")
 
 
 ```
 
+### Reading in Data
+
+Now that we have our working directory set we can use the `read_csv()` function which requires one minimum argument to work which is the name of your `.csv` file. Here we are setting the variable `mydata` to the contents within the `.csv` file. It stores the contents of `Topgown_Data.csv` in what is called a data frame. What is a dataframe? it is simply a matrix where each row constitutes a variable (which can be any type you want), and rows are observations.
+
+```{r  }
+mydata = read_csv("TopGown_Data.csv", skip_empty_rows = TRUE)
+```
+
+```{r }
+
+mydata[1:10,] %>% knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px") 
+```
+
+## Dplyr() Package
+
+We will now be wrangling this new dataset we imported into R using several `dplyr` functions. These are the ones we will be covering. In the following sections I will explain what each functions does in detial.
+
+| Function| Description   |    
+|:-------------:|-------------|
+|select()| keeps only the variables you mention|
+|arrange()|Order table rows by an expression involving its variables|
+|filter()|choose rows/cases where conditions are true.|
+|mutate()|adds new variables and preserves existing ones|
+|summarize()|Create new variables summarizing the variables of an existing table|
+|group_by()|takes an existing table and converts it into a grouped table where operations are performed "by group"|
+
+### select()
+
+For this particular experiment we have two independent variables of interest: `visual_field` and `constrained_to`; and four participant variables of interest: `zTOWRE_Word`,`zTOWRE_Nonword`,	`zSpelling_Dictation`,`zSpelling_Recogntion`. What if we are only interested in these variables, and we don't particularly need word level variables such as `ortho_N`, or `phono_N`. We can then select these variables.
+
+
+For this particular function, the first argument is going to be the dataset of interest. the dataset for we will be selecting from is `mydata`. The following arguments are simply the columns you would like to keep. 
+
+```{r }
+
+dplyr::select(mydata, Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,	zSpelling_Dictation,zSpelling_Recogntion)
+
+```
+
+```{r }
+
+mydata[1:10,] %>% dplyr::select(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,	zSpelling_Dictation,zSpelling_Recogntion) %>%
+  knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px")
+
+```
+
+#### The Pipe (%>*%)
+
+However, another way I would suggest writing code like this is to use a function in the `tidyverse` called the pipe (`%>%`). Like the `select()` function, the first argument in all `tidyverse` functions will be your dataset of interest. The pipe simply gets a dataset, and pushes it into the first argument of a function. Here is an example.
+
+```{r }
+
+mydata %>% dplyr::select(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,	zSpelling_Dictation,zSpelling_Recogntion) %>%
+  dplyr::select(Participants, visual_field, constrained_to)
+  
+
+```
+
+
+```{r }
+
+mydata[1:10,] %>% dplyr::select(Participants, visual_field, constrained_to) %>%
+  knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px")
+
+```
+
+In this regard, the pipe follows simple logic. Once a dataset is manipulated by one function, you pass it to the next function. 
+
+### arrange()
+
+Let us say that we are interested in the word freqeuncy and orthographic neighborhood size of a particular target word. we can arrange the these variables so we can display the most frequent words going in ascending order, and the words with the smallest orthographic neighborhood size in descending order.
 
 
 
