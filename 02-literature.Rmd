@@ -113,11 +113,7 @@ mydata[0:10,] %>% dplyr::select(Participants, visual_field, constrained_to) %>%
 
 ```
 
-In this regard, the pipe follows simple logic. Once you are manipulated by one function, you pass it to the next function. Imagine YOU are a dataset, and every function that is being applied to you changes you to something else. Here is a graphic to visualize the concept
-
-![](https://raw.githubusercontent.com/USF-Psych-DataSci/Classroom/master/img/pipe_routine.jpg)
-
-From here on out I will be incoperating the pipe function into all of the examples.
+In this regard, the pipe follows simple logic. Once a dataset is manipulated by one function, you pass it to the next function. 
 
 ### arrange()
 
