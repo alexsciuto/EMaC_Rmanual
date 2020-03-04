@@ -198,11 +198,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Let us say that we are interested in how specific word properties relate to one another, and how correlated they are. With this information we can learn specific detials about the nature of our linguistic stimuli, which is very important in psycholinguistics. So for this example we are going to plot the orthographic neighborhood size of the target word and word frequency.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> OrthoN_T, <span class="dt">y =</span> Freq_T)) <span class="op">+</span><span class="st"> </span><span class="co"># this defines the x and y axes of the plot</span>
 <span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="co"># this adds geometric objects</span>
-<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span><span class="co"># this sets the theme for the plot</span>
 <span class="st">  </span><span class="kw">theme_update</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># this line centers the title</span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Orthographic Neighborhood Size of Target Word&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># this line sets the label for x-axis</span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Word Frequency of Target Word&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># this line sets the label for y-axis</span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Word Frequency and Orthographic Neighborhood Size Scatter Plot&quot;</span>) <span class="co"># this sets the title for the plot</span></code></pre></div>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Word Frequency and Orthographic Neighborhood Size Scatter Plot&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># this sets the title for the plot </span>
+<span class="st">  </span><span class="kw">theme_classic</span>() <span class="co"># this sets the theme for the plot</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <table>
 <thead>
@@ -257,12 +257,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Let us say that we want to make sure our linguistic stimuli is balanced across specific word properties such as word frequency. We want to know if there are too many high frequency words as comparede to low ones, or vice versa. So here we are going to plot a histogram displaying the distribution of word frequency across items. However, what if we are also interested if this varies across sentence constraints? Then we can use the <code>fill</code> argument in the <code>aes()</code> call to do this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydata <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> OrthoN_T, <span class="dt">fill =</span> constrained_to)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>, <span class="dt">alpha =</span> .<span class="dv">7</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_update</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">hjust =</span> <span class="fl">0.5</span>)) <span class="op">+</span><span class="st">  </span>
 <span class="st">  </span><span class="kw">scale_fill_discrete</span>(<span class="dt">name  =</span><span class="st">&quot;Sentence Constraint&quot;</span>, <span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;Alternative&quot;</span>, <span class="st">&quot;Neutral&quot;</span>, <span class="st">&quot;Target&quot;</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Word Frequency of Target Word&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Count&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Word Frequency Distribution for Target Words&quot;</span>) </code></pre></div>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Word Frequency Distribution for Target Words&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_classic</span>() </code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 
 
