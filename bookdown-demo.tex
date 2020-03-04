@@ -1635,7 +1635,7 @@ we will be using \texttt{ggplot} package to further understand the data.
 However, before we go into plotting specific things about the data, we
 need to learn the grammar of plotting with \texttt{ggplot} in general
 
-\section{ggplot grammar}\label{ggplot-grammar}
+\subsection{ggplot grammar}\label{ggplot-grammar}
 
 You can think of the grammar of graphics as a systematic approach for
 describing the components of a graph. It has seven components (the ones
@@ -1718,8 +1718,8 @@ in bold are required to be specifed explicitly in ggplot2):
   \end{itemize}
 \end{itemize}
 
-\section{Example: Scatterplot
-grammar}\label{example-scatterplot-grammar}
+\subsection{Example: Scatterplot
+Grammar}\label{example-scatterplot-grammar}
 
 Let us say that we are interested in how specific word properties relate
 to one another, and how correlated they are. With this information we
@@ -1756,6 +1756,51 @@ coordinate system & rectangular\tabularnewline
 facetting & none\tabularnewline
 \bottomrule
 \end{longtable}
+
+\subsection{Example: Histogram Grammar}\label{example-histogram-grammar}
+
+Useful for depicting the distribution of a continuous random variable.
+Partitions the number line into bins of certain width, counts the number
+of observations falling into each bin, and erects a bar of that height
+for each bin.
+
+Required aesthetics:
+
+\begin{itemize}
+\item
+  \texttt{x}: A numeric vector.
+\item
+  By default, a histogram plots the count on the y-axis. If you want to
+  use proportion (i.e., ``density''), specify the y = ..density..
+  aesthetic.
+\item
+  You can change the smoothness of the plot via two arguments (your
+  choice):
+\item
+  \texttt{bins}: the number of bins/bars shown in the plot.
+\item
+  \texttt{binwidth}: the with of the bins shown on the plot.
+\end{itemize}
+
+Let us say that we want to make sure our linguistic stimuli is balanced
+across specific word properties such as word frequency. We want to know
+if there are too many high frequency words as comparede to low ones, or
+vice versa. So here we are going to plot a histogram displaying the
+distribution of word frequency across items
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Freq_T)) }\OperatorTok{+}\StringTok{ }\CommentTok{# this defines the x and y axes of the plot}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}\StringTok{ }\CommentTok{# this adds geometric objects}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}\StringTok{ }\CommentTok{# this sets the theme for the plot}
+\StringTok{  }\KeywordTok{theme_update}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\CommentTok{# this line centers the title}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Word Frequency of Target Word"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# this line sets the label for x-axis}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Count"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# this line sets the label for y-axis}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Word Frequency Distribution for Target Words"}\NormalTok{) }\CommentTok{# this sets the title for the plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 \bibliography{book.bib,packages.bib}
 
