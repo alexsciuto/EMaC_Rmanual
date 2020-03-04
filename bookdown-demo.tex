@@ -1786,17 +1786,20 @@ Let us say that we want to make sure our linguistic stimuli is balanced
 across specific word properties such as word frequency. We want to know
 if there are too many high frequency words as comparede to low ones, or
 vice versa. So here we are going to plot a histogram displaying the
-distribution of word frequency across items
+distribution of word frequency across items. However, what if we are
+also interested if this varies across sentence constraints? Then we can
+use the \texttt{fill} argument in the \texttt{aes()} call to do this.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Freq_T)) }\OperatorTok{+}\StringTok{ }\CommentTok{# this defines the x and y axes of the plot}
-\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}\StringTok{ }\CommentTok{# this adds geometric objects}
-\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}\StringTok{ }\CommentTok{# this sets the theme for the plot}
-\StringTok{  }\KeywordTok{theme_update}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\CommentTok{# this line centers the title}
-\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Word Frequency of Target Word"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# this line sets the label for x-axis}
-\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Count"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\CommentTok{# this line sets the label for y-axis}
-\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Word Frequency Distribution for Target Words"}\NormalTok{) }\CommentTok{# this sets the title for the plot}
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ OrthoN_T, }\DataTypeTok{fill =}\NormalTok{ constrained_to)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{20}\NormalTok{, }\DataTypeTok{alpha =}\NormalTok{ .}\DecValTok{7}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_update}\NormalTok{(}\DataTypeTok{plot.title =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{hjust =} \FloatTok{0.5}\NormalTok{)) }\OperatorTok{+}\StringTok{  }
+\StringTok{  }\KeywordTok{scale_fill_discrete}\NormalTok{(}\DataTypeTok{name  =}\StringTok{"Sentence Constraint"}\NormalTok{, }\DataTypeTok{labels=}\KeywordTok{c}\NormalTok{(}\StringTok{"Alternative"}\NormalTok{, }\StringTok{"Neutral"}\NormalTok{, }\StringTok{"Target"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Word Frequency of Target Word"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Count"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Word Frequency Distribution for Target Words"}\NormalTok{) }
 \end{Highlighting}
 \end{Shaded}
 
