@@ -20,7 +20,7 @@ mydata = read_csv("TopGown_Data.csv", skip_empty_rows = TRUE)
 ```
 Now that we have a basic understanding of how to wrangle data, now we want to graphically explain the data we are wrangling. For this chapter we will be using `ggplot` package to further understand the data. However, before we go into plotting specific things about the data, we need to learn the grammar of plotting with `ggplot` in general
 
-### ggplot grammar
+## ggplot grammar
 
 You can think of the grammar of graphics as a systematic approach for describing the components of a graph. It has seven components (the ones in bold are required to be specifed explicitly in ggplot2):
 
@@ -122,6 +122,41 @@ mydata %>% ggplot(aes(x = Freq_T)) +
   ggtitle("Word Frequency Distribution for Target Words") + 
   scale_fill_discrete(name = "Probe Position", labels = c("1", "2", "3", "4")) +
   theme_classic() 
-  
 
 ```
+
+## Plotting: Experimental Analysis
+
+In cognitive psychology we are particularly interested in how our independent variables and participant variables influence performance on a particular task. In this section we are going to plot performance on this study's task. We are going to view a few ways to graphically represent how these variables influence performance. 
+
+### Plotting Levels of One Categorical Variable
+
+One of our manipulations for this study was visual field. Staub and Goddard (2019) argue that it is easier to identify words when they are presented in foveal vision as compared to parafoveal vision. This is ostensibly due to the fact that visual clarity drops as a function of eccentricity (how many degrees from central vision is the target word). To test this hypothesis, we will simply graph how people perform on a task across visual field. Here is an example.
+
+```{r results = 'hide', message = FALSE, warning= FALSE}
+
+mydata %>% ggplot(aes(x = visual_field, y = accuracy)) + 
+  geom_point(size = 3) + 
+  xlab("Visual Field") + 
+  ylab("Correct Responses") + 
+  ggtitle("Correct Responses as a Function of Visual Field") + 
+  theme_classic() 
+
+# stat_summary(fun.data = "mean_se", geom = "pointrange")
+
+```
+
+Now you may see that there is something wrong with this graph. In fact, there isn't, the problem is that all of the response data is binary: coded as (0) when you are incorrect, and (1) when you are correct. Since participants got right and wrong answers in both levels on the condition, they look identical. Thus, a better way to plot this is to create a summarized version of the data in each level of visual field. Here is an example.
+
+```{r results = 'hide', message = FALSE, warning= FALSE}
+
+mydata %>% ggplot(aes(x = visual_field, y = accuracy)) + 
+  stat_summary(fun.data = "mean_se", geom = "pointrange", size = .8) + 
+  xlab("Visual Field") + 
+  ylab("Correct Responses") + 
+  ggtitle("Correct Responses as a Function of Visual Field") + 
+  theme_classic() 
+
+```
+
+
