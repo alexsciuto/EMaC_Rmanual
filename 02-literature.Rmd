@@ -14,10 +14,17 @@ On each trial in this experiment (n = 174), each participant (n = 84) sees a tar
 Before we start wrangling the data, we need to load in the packages we are using. In this lab, most of the data wrangling tools we will be using will be located in the `tidyverse()` package. What is a package? It is simply a group of functions that group of developers made that makes computations easier. To learn more about the `tidyverse()` package, you may click on this [link](https://www.tidyverse.org/) and read on it! For the data wrangling we will be doing in this section, we will be primarily using a package within tidyverse called `dplyr()`. to load in the package, simply type in the following code. What this code is saying is IF you don't have the `tidyverse()` installed, THEN install the package. After that, load the `tidyverse()` with the `library()` function.
 
 ```{r eval = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "C:/Users/alexs/Documents/Github/Emac_Rmanual/") 
+
+```
+
+```{r}
 if(!require(tidyverse)){
     install.packages("tidyverse")
 }
 library(tidyverse) 
+
 ```
 
 ### setting the working directory
@@ -25,7 +32,10 @@ library(tidyverse)
 Now that we have the packages that we need, we need to load up our directory. What is a directory? It is essentially the folder we will be using to read in files, or export files into. In this directory, we have our data set of interest, `Topgown_Data`
 
 ```{r eval = FALSE, message = FALSE}
-setwd("C:/Users/alexs/Documents/Github/Emac_Rmanual/TopGown/")
+setwd("C:/Users/alexs/Documents/Github/Emac_Rmanual/")
+
+library(knitr)
+library(kableExtra)
 ```
 
 ### Reading in Data
@@ -33,11 +43,9 @@ setwd("C:/Users/alexs/Documents/Github/Emac_Rmanual/TopGown/")
 Now that we have our working directory set we can use the `read_csv()` function which requires one minimum argument to work which is the name of your `.csv` file. Here we are setting the variable `mydata` to the contents within the `.csv` file. It stores the contents of `Topgown_Data.csv` in what is called a data frame. What is a dataframe? it is simply a matrix where each row constitutes a variable (which can be any type you want), and rows are observations.
 
 ```{r}
-mydata = read.csv("Topgown_Data.csv")
+mydata = read_csv("TopGown_Data.csv")
 ```
 
 ```{r echo = FALSE}
-knitr::kable(mydata) %>%
-  kable_styling("striped", full_width = F) %>%
-  scroll_box(height = "200px")
+knitr::kable(mydata)
 ```

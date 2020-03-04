@@ -77,9 +77,6 @@ Here, we assigned the numeric value `2` to the variable `x`. Thus, if we were to
 
 Now that you have a basic understanding of logical operators, we can use them in order to specify code to manipulate variables in a particular way. For this example, we will be working with the function `if_else()`. However, one question you may have is what is a function in R? I will describe the structure of functions, starting with a simple one. 
 
-|function: if you give an input, the function will do some computation and return an output| arguments: this is the structure of how the input is recieved, every function has preference | output: this is what the function returns   | input 
-|:----:| ------------- |:-------------:|:--:|:--:|
-|max(): this function finds the maximum number in a numeric vector| (c(1,2,3,4)): parameters are the things you input into teh function to get a specified output  | less than | x < 10 | TRUE |
 
 
-```
+
