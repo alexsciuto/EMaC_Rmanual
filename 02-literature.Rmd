@@ -67,11 +67,12 @@ We will now be wrangling this new dataset we imported into R using several `dply
 | Function| Description   |    
 |:-------------:|-------------|
 |select()| keeps only the variables you mention|
+|summarize()|Create new variables summarizing the variables of an existing table|
+|group_by()|takes an existing table and converts it into a grouped table where operations are performed "by group"|
 |arrange()|Order table rows by an expression involving its variables|
 |filter()|choose rows/cases where conditions are true.|
 |mutate()|adds new variables and preserves existing ones|
-|summarize()|Create new variables summarizing the variables of an existing table|
-|group_by()|takes an existing table and converts it into a grouped table where operations are performed "by group"|
+
 
 ### select()
 
@@ -119,9 +120,117 @@ mydata[1:10,] %>% dplyr::select(Participants, visual_field, constrained_to) %>%
 
 In this regard, the pipe follows simple logic. Once a dataset is manipulated by one function, you pass it to the next function. 
 
+### group_by() & summarise()
+
+However, let us say we are particularly interested in the values of one variable. For example, word properties. Therefore, we would need to compile a new dataset that summarizes word properties, such as orthographic neighborhood size. So in this example we will create a dataframe summarized by the presented word.
+
+```{r results = 'hide', message = FALSE, warning= FALSE}
+
+mydata %>% dplyr::select(Participants, visual_field, constrained_to, presented_word, OrthoN_T) %>%
+  group_by(presented_word) %>%
+  dplyr::summarise(OrthoN_T = mean(OrthoN_T))
+
+```
+
+```{r echo=FALSE, message = FALSE, warning= FALSE}
+
+x = mydata %>% dplyr::select(Participants, visual_field, constrained_to, presented_word, OrthoN_T) %>%
+  group_by(presented_word) %>%
+  dplyr::summarise(OrthoN_T = mean(OrthoN_T)) 
+  x[1:10,] %>%
+  knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px")
+
+```
+
 ### arrange()
 
-Let us say that we are interested in the word freqeuncy and orthographic neighborhood size of a particular target word. we can arrange the these variables so we can display the most frequent words going in ascending order, and the words with the smallest orthographic neighborhood size in descending order.
+Let us say that we are still interested in  neighborhood size of a particular target word. we can arrange the these variables so we can display the the words from lowest orthographic neighborhood size to higher orthographic neighborhood size. For this we can use the arrange function, which sorts a particular variable of interest in ascending or descending order.
+
+```{r results = 'hide', message = FALSE, warning= FALSE}
+
+mydata %>% dplyr::select(Participants, visual_field, constrained_to, presented_word, OrthoN_T, Freq_T) %>%
+  group_by(presented_word) %>%
+  dplyr::summarise(OrthoN_T = mean(OrthoN_T)) %>%
+  dplyr::arrange(OrthoN_T)
+  
+
+```
+
+```{r echo=FALSE, message = FALSE, warning= FALSE}
+
+x = mydata %>% dplyr::select(Participants, visual_field, constrained_to, presented_word, OrthoN_T, Freq_T) %>%
+  group_by(presented_word) %>%
+  dplyr::summarise(OrthoN_T = mean(OrthoN_T)) %>%
+  dplyr::arrange(OrthoN_T) 
+  x[1:10,] %>%
+  knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px")
+
+```
+
+### filter()
+
+Let us say that not only are we interested in orthographic neigbhorhood size, but we want to know orthographic neighborhood size for a particular condition in our study. We can then use the `filter()` function, and only keep the trails that are within the condition of interest. For this example, we are interested when the sentence is constraining toward the target word and when the target word is presented in the parafovea.
+
+```{r results = 'hide', message = FALSE, warning= FALSE}
+
+mydata %>% dplyr::select(Participants, visual_field, constrained_to, presented_word, OrthoN_T, Freq_T) %>%
+  filter(visual_field == "Parafovea" & constrained_to == "T") %>%
+  group_by(presented_word, visual_field, constrained_to) %>%
+  dplyr::summarise(OrthoN_T = mean(OrthoN_T)) %>%
+  dplyr::arrange(OrthoN_T)
+  
+
+```
 
 
+```{r echo=FALSE, message = FALSE, warning= FALSE}
 
+ x = mydata %>% dplyr::select(Participants, visual_field, constrained_to, presented_word, OrthoN_T, Freq_T) %>%
+  filter(visual_field == "Parafovea" & constrained_to == "T") %>%
+  group_by(presented_word, visual_field, constrained_to) %>%
+  dplyr::summarise(OrthoN_T = mean(OrthoN_T)) %>%
+  dplyr::arrange(OrthoN_T)
+  x[1:10,] %>%
+  knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px")
+
+```
+
+### mutate()
+
+Let us say that we are not only interested in word properties like orthographic neighborhood size, but also the spelling ability of particular participants. In this study we have four spelling tests, which were measured through the following variables: `zTowre_Word`, `zTowre_Nonword`, `Spelling_Dictation`, `Spelling_Recogntion`. However, these are a lot of measures. what if we wanted to know the average between all of these measures for each participant? we can use the mutate function to do this.
+
+
+```{r results = 'hide', message = FALSE, warning= FALSE}
+
+mydata %>% dplyr::select(Participants, zTOWRE_Word, zTOWRE_Nonword, zSpelling_Dictation, zSpelling_Recogntion) %>%
+  group_by(Participants) %>%
+  dplyr::summarise(zTOWRE_Word = mean(zTOWRE_Word), 
+                   zTOWRE_Nonword = mean(zTOWRE_Nonword), 
+                   zSpelling_Dictation = mean(zSpelling_Dictation), 
+                   zSpelling_Recogntion = mean(zSpelling_Recogntion)) %>%
+  dplyr::mutate(aggregated_spelling = ((zTOWRE_Word + zTOWRE_Nonword + zSpelling_Dictation + zSpelling_Recogntion)/4))
+  
+
+```
+
+```{r echo=FALSE, message = FALSE, warning= FALSE}
+
+x = mydata %>% dplyr::select(Participants, zTOWRE_Word, zTOWRE_Nonword, zSpelling_Dictation, zSpelling_Recogntion) %>%
+  group_by(Participants) %>%
+  dplyr::summarise(zTOWRE_Word = mean(zTOWRE_Word), 
+                   zTOWRE_Nonword = mean(zTOWRE_Nonword), 
+                   zSpelling_Dictation = mean(zSpelling_Dictation), 
+                   zSpelling_Recogntion = mean(zSpelling_Recogntion)) %>%
+  dplyr::mutate(aggregated_spelling = ((zTOWRE_Word + zTOWRE_Nonword + zSpelling_Dictation + zSpelling_Recogntion)/4)) 
+  x[1:5,] %>%
+  knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px")
+
+```
