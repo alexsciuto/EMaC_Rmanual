@@ -117,6 +117,7 @@ In this regard, the pipe follows simple logic. Once a dataset is manipulated by 
 
 ### arrange()
 
-For this particular experiment we have two independent variables of interest: `visual_field` and `constrained_to`; and four participant variables of interest: `zTOWRE_Word`,`zTOWRE_Nonword`,	`zSpelling_Dictation`,`zSpelling_Recogntion`. What if we are only interested in these variables, and we don't particularly need word level variables such as `ortho_N`, or `phono_N`. We can then select these variables.
+Let us say that we are interested in the word freqeuncy and orthographic neighborhood size of a particular target word. we can arrange the these variables so we can display the most frequent words going in ascending order, and the words with the smallest orthographic neighborhood size in descending order.
+
 
 
