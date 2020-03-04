@@ -63,3 +63,12 @@ mydata %>% ggplot(aes(x = OrthoN_T, y = Freq_T)) + # this defines the x and y ax
 
 ```
   
+|Grammar Component|Specification|
+|:--:|:--:|
+|data|mydata|
+|aesthetic mapping|x: OrthoN_T, y: Freq_T|
+|geometric object|points|
+|scale|	x: linear, y: linear|
+|statistical transform|	none|
+|coordinate system|	rectangular|
+|facetting|	none|
