@@ -46,7 +46,7 @@ setwd("C:/Users/alexs/Documents/Github/Emac_Rmanual/")
 Now that we have our working directory set we can use the `read_csv()` function which requires one minimum argument to work which is the name of your `.csv` file. Here we are setting the variable `mydata` to the contents within the `.csv` file. It stores the contents of `Topgown_Data.csv` in what is called a data frame. What is a dataframe? it is simply a matrix where each row constitutes a variable (which can be any type you want), and rows are observations.
 
 ```{r  echo = TRUE, message = FALSE, warning=FALSE}
-mydata = read_csv("TopGown_Data.csv", skip_empty_rows = TRUE, )
+mydata = read_csv("TopGown_Data.csv", skip_empty_rows = TRUE)
 ```
 
 ```{r echo = TRUE, message = FALSE, warning=FALSE}
