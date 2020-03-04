@@ -38,11 +38,7 @@ library(kableExtra)
 
 Now that we have the packages that we need, we need to load up our directory. What is a directory? It is essentially the folder we will be using to read in files, or export files into. In this directory, we have our data set of interest, `Topgown_Data`
 
-```{r  eval = FALSE}
-setwd("C:/Users/alexs/Documents/Github/Emac_Rmanual/")
 
-
-```
 
 ### Reading in Data
 
