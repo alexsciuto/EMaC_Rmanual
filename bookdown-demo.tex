@@ -1900,6 +1900,49 @@ Here is an example.
 
 \includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-23-1.pdf}
 
+\subsection{Plotting Levels of Multiple Categorical
+Variables}\label{plotting-levels-of-multiple-categorical-variables}
+
+Most experiments in Cognitive dont only compare between one factor, but
+sometimes across many factors. For instance, with this experiment Staub
+and Goddard (2019) has a very specific hypothesis: When words are
+presented in foveal vision we are less likely to rely on sentence
+context for word identification, however when words are presented in
+parafoveal vision we are more likely to rely on sentence context for
+word identification. To answer this question, we need to plot both
+factors: visual field and sentence constraint.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ visual_field, }\DataTypeTok{y =}\NormalTok{ accuracy, }\DataTypeTok{color =}\NormalTok{ constrained_to)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{stat_summary}\NormalTok{(}\DataTypeTok{fun.data =} \StringTok{"mean_se"}\NormalTok{, }\DataTypeTok{geom =} \StringTok{"pointrange"}\NormalTok{, }\DataTypeTok{size =}\NormalTok{ .}\DecValTok{8}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Visual Field"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Correct Responses"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Correct Responses as a Function of Visual Field"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-24-1.pdf}
+Does this graph test for this hypothesis well? It is a little difficult
+to tell. Can we think of a better way to represent this? Maybe we can
+try to plot sentence constraint on the x-axis and our color be visual
+field.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mydata }\OperatorTok{%>%}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ constrained_to, }\DataTypeTok{y =}\NormalTok{ accuracy, }\DataTypeTok{color =}\NormalTok{ visual_field)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{stat_summary}\NormalTok{(}\DataTypeTok{fun.data =} \StringTok{"mean_se"}\NormalTok{, }\DataTypeTok{geom =} \StringTok{"pointrange"}\NormalTok{, }\DataTypeTok{size =}\NormalTok{ .}\DecValTok{8}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{stat_summary}\NormalTok{(}\DataTypeTok{geom =} \StringTok{"line"}\NormalTok{, }\DataTypeTok{fun.y =} \StringTok{"mean"}\NormalTok{, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group =}\NormalTok{ visual_field))}\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Sentence Constraint"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Correct Responses"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Correct Responses as a Function of Visual Field & Sentence Constraint"}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{bookdown-demo_files/figure-latex/unnamed-chunk-25-1.pdf}
+
 \bibliography{book.bib,packages.bib}
 
 \end{document}
