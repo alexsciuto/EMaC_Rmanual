@@ -20,7 +20,7 @@ mydata = read_csv("TopGown_Data.csv", skip_empty_rows = TRUE)
 ```
 Now that we have a basic understanding of how to wrangle data, now we want to graphically explain the data we are wrangling. For this chapter we will be using `ggplot` package to further understand the data. However, before we go into plotting specific things about the data, we need to learn the grammar of plotting with `ggplot` in general
 
-## ggplot grammar
+### ggplot grammar
 
 You can think of the grammar of graphics as a systematic approach for describing the components of a graph. It has seven components (the ones in bold are required to be specifed explicitly in ggplot2):
 
@@ -47,7 +47,7 @@ You can think of the grammar of graphics as a systematic approach for describing
     * This is a specification of data variables that partition the data into smaller “sub plots”, or panels.
       These components are like parameters of statistical graphics, defining the “space” of statistical graphics. In theory, there is a one-to-one mapping between a plot and its       grammar components, making this a useful way to specify graphics.
       
-## Example: Scatterplot grammar
+### Example: Scatterplot Grammar
 
 Let us say that we are interested in how specific word properties relate to one another, and how correlated they are. With this information we can learn specific detials about the nature of our linguistic stimuli, which is very important in psycholinguistics. So for this example we are going to plot the orthographic neighborhood size of the target word and word frequency. 
 
@@ -72,3 +72,30 @@ mydata %>% ggplot(aes(x = OrthoN_T, y = Freq_T)) + # this defines the x and y ax
 |statistical transform|	none|
 |coordinate system|	rectangular|
 |facetting|	none|
+
+### Example: Histogram Grammar
+
+Useful for depicting the distribution of a continuous random variable. Partitions the number line into bins of certain width, counts the number of observations falling into each bin, and erects a bar of that height for each bin.
+
+Required aesthetics:
+
+* `x`: A numeric vector.
+  * By default, a histogram plots the count on the y-axis. If you want to use proportion (i.e., “density”), specify the y = ..density.. aesthetic.
+    
+* You can change the smoothness of the plot via two arguments (your choice):
+  * `bins`: the number of bins/bars shown in the plot.
+  * `binwidth`: the with of the bins shown on the plot.
+  
+Let us say that we want to make sure our linguistic stimuli is balanced across specific word properties such as word frequency. We want to know if there are too many high frequency words as comparede to low ones, or vice versa. So here we are going to plot a histogram displaying the distribution of word frequency across items
+
+```{r results = 'hide', message = FALSE, warning= FALSE}
+
+mydata %>% ggplot(aes(x = Freq_T)) + # this defines the x and y axes of the plot
+  geom_histogram() + # this adds geometric objects
+  theme_classic() + # this sets the theme for the plot
+  theme_update(plot.title = element_text(hjust = 0.5)) + # this line centers the title
+  xlab("Word Frequency of Target Word") + # this line sets the label for x-axis
+  ylab("Count") + # this line sets the label for y-axis
+  ggtitle("Word Frequency Distribution for Target Words") # this sets the title for the plot
+
+```
