@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#select"><span class="toc-section-number">4.1.1</span> select()</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#r-echo-false-message-false-warningfalse-mydata110-dplyrselectparticipants-visual_field-constrained_to-ztowre_wordztowre_nonword-zspelling_dictationzspelling_recogntion-knitrkablehtml-kableextrakable_stylingstriped-full_width-f-kableextrascroll_boxheight-500px"><span class="toc-section-number">5</span> <code>{r echo = FALSE, message = FALSE, warning=FALSE} #  # mydata[1:10,] %&gt;% dplyr::select(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,   zSpelling_Dictation,zSpelling_Recogntion) %&gt;% #   knitr::kable("html") %&gt;% #   kableExtra::kable_styling("striped", full_width = F) %&gt;% #   kableExtra::scroll_box(height = "500px") #  #</code></a></li>
+<li><a href="#r-echo-false-message-false-warningfalse-mydata110-dplyrselectparticipants-visual_field-constrained_to-ztowre_wordztowre_nonword-zspelling_dictationzspelling_recogntion-knitrkablehtml-kableextrakable_stylingstriped-full_width-f-kableextrascroll_boxheight-500px"><span class="toc-section-number">5</span> <code>{r echo = FALSE, message = FALSE, warning=FALSE} #  # mydata[1:10,] %&gt;% dplyr::select(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,   #zSpelling_Dictation,zSpelling_Recogntion) %&gt;% #   knitr::kable("html") %&gt;% #   kableExtra::kable_styling("striped", full_width = F) %&gt;% #   kableExtra::scroll_box(height = "500px") #  #</code></a></li>
 <li><a href="#r-echo-false-message-false-warningfalse-mydata110-dplyrselectparticipants-visual_field-constrained_to-knitrkablehtml-kableextrakable_stylingstriped-full_width-f-kableextrascroll_boxheight-500px"><span class="toc-section-number">6</span> <code>{r echo = FALSE, message = FALSE, warning=FALSE} #  # mydata[1:10,] %&gt;% dplyr::select(Participants, visual_field, constrained_to) %&gt;% #   knitr::kable("html") %&gt;% #   kableExtra::kable_styling("striped", full_width = F) %&gt;% #   kableExtra::scroll_box(height = "500px") #  #</code></a><ul>
 <li><a href="#arrange"><span class="toc-section-number">6.0.1</span> arrange()</a></li>
 </ul></li>
@@ -197,147 +197,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="intro" class="section level1">
 <h1><span class="header-section-number">2</span> Introduction to Programming in R</h1>
-<p>Before you can do data wrangling, statiscs, and visualization using R for cognitive psychology research, you need to learn the basic syntax in R. This chapter will introduce the basics.</p>
+<p>Placeholder</p>
 <div id="variables-in-r" class="section level2">
 <h2><span class="header-section-number">2.1</span> Variables in R</h2>
-<p>R can manipulate and wrangle all kinds of data, these data could be stored in a handful of variables that we can then work with. The first one we will be talking about is numeric.</p>
 <div id="numeric" class="section level3">
 <h3><span class="header-section-number">2.1.1</span> Numeric</h3>
-<p>a numeric is a number (including decimals) that can be stored within a variable. Here is an example:</p>
-<p><strong><em><code>x = 2</code></em></strong></p>
-<p>Here, we assigned the numeric value <code>2</code> to the variable <code>x</code>. Thus, if we were to do arithemtic, <code>x</code> will be treated as <code>2</code>. Moreover, there are specific functions in R we can use in order to do arithmetic with numeric variables. Here are a few examples:</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center">Arithemtic</th>
-<th align="center">R-Input</th>
-<th align="center">R-Output</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">Addition:</td>
-<td align="center"><code>x + 2</code></td>
-<td align="center"><code>4</code></td>
-</tr>
-<tr class="even">
-<td align="center">Substraction:</td>
-<td align="center"><code>x - 2</code></td>
-<td align="center"><code>0</code></td>
-</tr>
-<tr class="odd">
-<td align="center">Division:</td>
-<td align="center"><code>x / 2</code></td>
-<td align="center"><code>1</code></td>
-</tr>
-<tr class="even">
-<td align="center">Multiplication:</td>
-<td align="center"><code>x * 2</code></td>
-<td align="center"><code>4</code></td>
-</tr>
-<tr class="odd">
-<td align="center">Exponent:</td>
-<td align="center"><code>x ^ 2</code></td>
-<td align="center"><code>4</code></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div id="character" class="section level3">
 <h3><span class="header-section-number">2.1.2</span> Character</h3>
-<p>A character is a combination of characters (either letters and/or numbers) that can be stored within a variable. Moreover, it is very important that you place the character between quotation marks. Here is an example:</p>
-<p><strong><em><code>x = "Cognitive Psychology"</code></em></strong></p>
-<p>Here, we assigned the character value <code>"Cognitive Psychology"</code> to the variable <code>x</code>. There are ways to manipulate character type variables, and also modify them. However, we will touch on that later.</p>
 </div>
 <div id="logical" class="section level3">
 <h3><span class="header-section-number">2.1.3</span> Logical</h3>
-<p>A logical can only have two possible values, <code>TRUE</code> and <code>FALSE</code> that can be stored within a variable. This is not typically a varaible type that you will need to assign variable values to. However, the logical type variable is extremely important becuase a lot of functions in R return a logical variable. We will dive into some of these functions</p>
 </div>
 <div id="vector" class="section level3">
 <h3><span class="header-section-number">2.1.4</span> Vector</h3>
-<p>A vector is multiple variables stored into one data-set. Vectors can contain any variable type: character, numeric, string, and logical. When you are declaring a a vector type variable, you typically have to use the concatenate function <code>c()</code>. Here is an example:</p>
-<p><code>x = c(1,2,3,4)</code></p>
-<p><code>x = c("I", "like", "Cognitive", "Psychology")</code></p>
-<p><code>x = c(TRUE, FALSE, FALSE, TRUE)</code></p>
-<p>To reference a vector varaible, you need to use <code>[]</code> and inside the brackets, you have to specify the index of where the given variable in the vector is. Here is an example</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">x =<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;10&quot;</span>, <span class="st">&quot;20&quot;</span>, <span class="st">&quot;30&quot;</span>, <span class="st">&quot;40&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" title="2">x[<span class="dv">4</span>]</a></code></pre></div>
-<pre><code>## [1] &quot;40&quot;</code></pre>
-<p>Here, we assigned the numbers: <code>10, 20, 30, 40</code> to the vector <code>x</code>. <code>"Cognitive Psychology"</code> to the variable <code>x</code>. There are ways to manipulate character type variables, and also modify them. However, we will touch on that later.</p>
 </div>
 </div>
 <div id="logical-operators-if-statements" class="section level2">
 <h2><span class="header-section-number">2.2</span> Logical Operators &amp; if-Statements</h2>
-<p>Now that you have a basic understanding of how variables work in R, the next step is to learn how to use logical operators in order to specifiy what are the specific conditions under which you want your variables to be manipulated. The main way to do this in R is by using logical operators.</p>
-<p><strong><em><code>x = 2</code></em></strong></p>
-<p>Here, we assigned the numeric value <code>2</code> to the variable <code>x</code>. Thus, if we were to apply logical operators to <code>x</code>, <code>x</code> will be treated as <code>2</code>. Here are examples of all of the logical operators:</p>
-<table>
-<thead>
-<tr class="header">
-<th>Logical Operators</th>
-<th align="center">Description</th>
-<th align="center">R-Input</th>
-<th align="center">R-Output</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>&lt;</td>
-<td align="center">less than</td>
-<td align="center">x &lt; 10</td>
-<td align="center">TRUE</td>
-</tr>
-<tr class="even">
-<td>&lt;=</td>
-<td align="center">less than or equal to</td>
-<td align="center">x &lt;= 2</td>
-<td align="center">TRUE</td>
-</tr>
-<tr class="odd">
-<td>&gt;</td>
-<td align="center">greater than</td>
-<td align="center">x &gt; 1</td>
-<td align="center">TRUE</td>
-</tr>
-<tr class="even">
-<td>&gt;=</td>
-<td align="center">greater than or equal to</td>
-<td align="center">x &gt;= 3</td>
-<td align="center">FALSE</td>
-</tr>
-<tr class="odd">
-<td>==</td>
-<td align="center">exactly equal to</td>
-<td align="center">x == 9</td>
-<td align="center">FALSE</td>
-</tr>
-<tr class="even">
-<td>!=</td>
-<td align="center">not equal to</td>
-<td align="center">x != 10</td>
-<td align="center">FALSE</td>
-</tr>
-<tr class="odd">
-<td>!x</td>
-<td align="center">Not x</td>
-<td align="center">!x</td>
-<td align="center">FALSE</td>
-</tr>
-<tr class="even">
-<td>x | y</td>
-<td align="center">x OR y</td>
-<td align="center">x == 10 | x != 10</td>
-<td align="center">TRUE</td>
-</tr>
-<tr class="odd">
-<td>x &amp; y</td>
-<td align="center">x AND y</td>
-<td align="center">x == 10 &amp;x != 10</td>
-<td align="center">FALSE</td>
-</tr>
-</tbody>
-</table>
-<p>Now that you have a basic understanding of logical operators, we can use them in order to specify code to manipulate variables in a particular way. For this example, we will be working with the function <code>if_else()</code>. However, one question you may have is what is a function in R? I will describe the structure of functions, starting with a simple one.</p>
 <!--chapter:end:01-intro.Rmd-->
 </div>
 </div>
@@ -353,20 +230,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="loading-packages" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Loading Packages</h3>
 <p>Before we start wrangling the data, we need to load in the packages we are using. In this lab, most of the data wrangling tools we will be using will be located in the <code>tidyverse()</code> package. What is a package? It is simply a group of functions that group of developers made that makes computations easier. To learn more about the <code>tidyverse</code> package, you may click on this <a href="https://www.tidyverse.org/">link</a> and read on it! For the data wrangling we will be doing in this section, we will be primarily using a package within tidyverse called <code>dplyr</code>. to load in the package, simply type in the following code. What this code is saying is IF you don’t have the <code>tidyverse</code> installed, THEN install the package. After that, load the <code>tidyverse</code> with the <code>library()</code> function.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(tidyverse)){</a>
-<a class="sourceLine" id="cb3-2" title="2">    <span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a>
-<a class="sourceLine" id="cb3-3" title="3">}</a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="kw">library</span>(tidyverse) </a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="cf">if</span>(<span class="op">!</span><span class="kw">require</span>(tidyverse)){</a>
+<a class="sourceLine" id="cb1-2" title="2">    <span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a>
+<a class="sourceLine" id="cb1-3" title="3">}</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(tidyverse) </a></code></pre></div>
 </div>
 <div id="setting-the-working-directory" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> setting the working directory</h3>
 <p>Now that we have the packages that we need, we need to load up our directory. What is a directory? It is essentially the folder we will be using to read in files, or export files into. In this directory, we have our data set of interest, <code>Topgown_Data</code></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">setwd</span>(<span class="st">&quot;C:/Users/alexs/Documents/Github/Emac_Rmanual/&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">setwd</span>(<span class="st">&quot;C:/Users/alexs/Documents/Github/Emac_Rmanual/&quot;</span>)</a></code></pre></div>
 </div>
 <div id="reading-in-data" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Reading in Data</h3>
 <p>Now that we have our working directory set we can use the <code>read_csv()</code> function which requires one minimum argument to work which is the name of your <code>.csv</code> file. Here we are setting the variable <code>mydata</code> to the contents within the <code>.csv</code> file. It stores the contents of <code>Topgown_Data.csv</code> in what is called a data frame. What is a dataframe? it is simply a matrix where each row constitutes a variable (which can be any type you want), and rows are observations.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">mydata =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;TopGown_Data.csv&quot;</span>, <span class="dt">skip_empty_rows =</span> <span class="ot">TRUE</span>, )</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">mydata =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;TopGown_Data.csv&quot;</span>, <span class="dt">skip_empty_rows =</span> <span class="ot">TRUE</span>, )</a></code></pre></div>
 </div>
 </div>
 </div>
@@ -417,7 +294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.1.1</span> select()</h3>
 <p>For this particular experiment we have two independent variables of interest: <code>visual_field</code> and <code>constrained_to</code>; and four participant variables of interest: <code>zTOWRE_Word</code>,<code>zTOWRE_Nonword</code>, <code>zSpelling_Dictation</code>,<code>zSpelling_Recogntion</code>. What if we are only interested in these variables, and we don’t particularly need word level variables such as <code>ortho_N</code>, or <code>phono_N</code>. We can then select these variables.</p>
 <p>For this particular function, the first argument is going to be the dataset of interest. the dataset for we will be selecting from is <code>mydata</code>. The following arguments are simply the columns you would like to keep.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">dplyr<span class="op">::</span><span class="kw">select</span>(mydata, Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,   zSpelling_Dictation,zSpelling_Recogntion)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">dplyr<span class="op">::</span><span class="kw">select</span>(mydata, Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,   zSpelling_Dictation,zSpelling_Recogntion)</a></code></pre></div>
 <pre><code>## # A tibble: 14,004 x 7
 ##    Participants visual_field constrained_to zTOWRE_Word zTOWRE_Nonword
 ##    &lt;chr&gt;        &lt;chr&gt;        &lt;chr&gt;                &lt;dbl&gt;          &lt;dbl&gt;
@@ -437,12 +314,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="r-echo-false-message-false-warningfalse-mydata110-dplyrselectparticipants-visual_field-constrained_to-ztowre_wordztowre_nonword-zspelling_dictationzspelling_recogntion-knitrkablehtml-kableextrakable_stylingstriped-full_width-f-kableextrascroll_boxheight-500px" class="section level1">
-<h1><span class="header-section-number">5</span> <code>{r echo = FALSE, message = FALSE, warning=FALSE} #  # mydata[1:10,] %&gt;% dplyr::select(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,   zSpelling_Dictation,zSpelling_Recogntion) %&gt;% #   knitr::kable("html") %&gt;% #   kableExtra::kable_styling("striped", full_width = F) %&gt;% #   kableExtra::scroll_box(height = "500px") #  #</code></h1>
+<h1><span class="header-section-number">5</span> <code>{r echo = FALSE, message = FALSE, warning=FALSE} #  # mydata[1:10,] %&gt;% dplyr::select(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,   #zSpelling_Dictation,zSpelling_Recogntion) %&gt;% #   knitr::kable("html") %&gt;% #   kableExtra::kable_styling("striped", full_width = F) %&gt;% #   kableExtra::scroll_box(height = "500px") #  #</code></h1>
 <div id="the-pipe" class="section level4">
 <h4><span class="header-section-number">5.0.0.1</span> The Pipe (%&gt;*%)</h4>
 <p>However, another way I would suggest writing code like this is to use a function in the <code>tidyverse</code> called the pipe (<code>%&gt;%</code>). Like the <code>select()</code> function, the first argument in all <code>tidyverse</code> functions will be your dataset of interest. The pipe simply gets a dataset, and pushes it into the first argument of a function. Here is an example.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">mydata <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,    zSpelling_Dictation,zSpelling_Recogntion) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, visual_field, constrained_to)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">mydata <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,    zSpelling_Dictation,zSpelling_Recogntion) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(Participants, visual_field, constrained_to)</a></code></pre></div>
 </div>
 </div>
 <div id="r-echo-false-message-false-warningfalse-mydata110-dplyrselectparticipants-visual_field-constrained_to-knitrkablehtml-kableextrakable_stylingstriped-full_width-f-kableextrascroll_boxheight-500px" class="section level1">

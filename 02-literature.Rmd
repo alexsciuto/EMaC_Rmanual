@@ -35,7 +35,7 @@ library(tidyverse)
 
 Now that we have the packages that we need, we need to load up our directory. What is a directory? It is essentially the folder we will be using to read in files, or export files into. In this directory, we have our data set of interest, `Topgown_Data`
 
-```{r  message = FALSE, warning= FALSE}
+```{r  echo = TRUE, message = FALSE, warning= FALSE}
 setwd("C:/Users/alexs/Documents/Github/Emac_Rmanual/")
 
 
@@ -45,16 +45,16 @@ setwd("C:/Users/alexs/Documents/Github/Emac_Rmanual/")
 
 Now that we have our working directory set we can use the `read_csv()` function which requires one minimum argument to work which is the name of your `.csv` file. Here we are setting the variable `mydata` to the contents within the `.csv` file. It stores the contents of `Topgown_Data.csv` in what is called a data frame. What is a dataframe? it is simply a matrix where each row constitutes a variable (which can be any type you want), and rows are observations.
 
-```{r  message = FALSE, warning=FALSE}
+```{r  echo = TRUE, message = FALSE, warning=FALSE}
 mydata = read_csv("TopGown_Data.csv", skip_empty_rows = TRUE, )
 ```
 
-# ```{r echo = FALSE, message = FALSE, warning=FALSE}
-# 
-# mydata[1:10,] %>% knitr::kable("html") %>%
-#   kableExtra::kable_styling("striped", full_width = F) %>%
-#   kableExtra::scroll_box(height = "500px") 
-# ```
+```{r echo = TRUE, message = FALSE, warning=FALSE}
+
+mydata[1:10,] %>% knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px") 
+```
 
 ## Dplyr() Package
 
@@ -82,14 +82,14 @@ dplyr::select(mydata, Participants, visual_field, constrained_to, zTOWRE_Word,zT
 
 ```
 
-# ```{r echo = FALSE, message = FALSE, warning=FALSE}
-# 
-# mydata[1:10,] %>% dplyr::select(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,	zSpelling_Dictation,zSpelling_Recogntion) %>%
-#   knitr::kable("html") %>%
-#   kableExtra::kable_styling("striped", full_width = F) %>%
-#   kableExtra::scroll_box(height = "500px")
-# 
-# ```
+```{r echo = FALSE, message = FALSE, warning=FALSE}
+
+mydata[1:10,] %>% dplyr::select(Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,	zSpelling_Dictation,zSpelling_Recogntion) %>%
+  knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px")
+
+```
 
 #### The Pipe (%>*%)
 
@@ -104,14 +104,14 @@ mydata %>% dplyr::select(Participants, visual_field, constrained_to, zTOWRE_Word
 ```
 
 
-# ```{r echo = FALSE, message = FALSE, warning=FALSE}
-# 
-# mydata[1:10,] %>% dplyr::select(Participants, visual_field, constrained_to) %>%
-#   knitr::kable("html") %>%
-#   kableExtra::kable_styling("striped", full_width = F) %>%
-#   kableExtra::scroll_box(height = "500px")
-# 
-# ```
+```{r echo = FALSE, message = FALSE, warning=FALSE}
+
+mydata[1:10,] %>% dplyr::select(Participants, visual_field, constrained_to) %>%
+  knitr::kable("html") %>%
+  kableExtra::kable_styling("striped", full_width = F) %>%
+  kableExtra::scroll_box(height = "500px")
+
+```
 
 In this regard, the pipe follows simple logic. Once a dataset is manipulated by one function, you pass it to the next function. 
 
