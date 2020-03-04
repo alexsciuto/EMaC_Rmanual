@@ -159,4 +159,30 @@ mydata %>% ggplot(aes(x = visual_field, y = accuracy)) +
 
 ```
 
+### Plotting Levels of Multiple Categorical Variables
 
+Most experiments in Cognitive dont only compare between one factor, but sometimes across many factors. For instance, with this experiment Staub and Goddard (2019) has a very specific hypothesis: When words are presented in foveal vision we are less likely to rely on sentence context for word identification, however when words are presented in parafoveal vision we are more likely to rely on sentence context for word identification. To answer this question, we need to plot both factors: visual field and sentence constraint.
+
+```{r results = 'hide', message = FALSE, warning= FALSE}
+
+mydata %>% ggplot(aes(x = visual_field, y = accuracy, color = constrained_to)) + 
+  stat_summary(fun.data = "mean_se", geom = "pointrange", size = .8) + 
+  xlab("Visual Field") + 
+  ylab("Correct Responses") + 
+  ggtitle("Correct Responses as a Function of Visual Field") + 
+  theme_classic() 
+
+```
+Does this graph test for this hypothesis well? It is a little difficult to tell. Can we think of a better way to represent this? Maybe we can try to plot sentence constraint on the x-axis and our color be visual field. 
+
+```{r results = 'hide', message = FALSE, warning= FALSE}
+
+mydata %>% ggplot(aes(x = constrained_to, y = accuracy, color = visual_field)) + 
+  stat_summary(fun.data = "mean_se", geom = "pointrange", size = .8) + 
+  stat_summary(geom = "line", fun.y = "mean", aes(group = visual_field))+
+  xlab("Sentence Constraint") + 
+  ylab("Correct Responses") + 
+  ggtitle("Correct Responses as a Function of Visual Field & Sentence Constraint") + 
+  theme_classic() 
+
+```
