@@ -14,8 +14,8 @@ On each trial in this experiment (n = 174), each participant (n = 84) sees a tar
 Before we start wrangling the data, we need to load in the packages we are using. In this lab, most of the data wrangling tools we will be using will be located in the `tidyverse()` package. What is a package? It is simply a group of functions that group of developers made that makes computations easier. To learn more about the `tidyverse` package, you may click on this [link](https://www.tidyverse.org/) and read on it! For the data wrangling we will be doing in this section, we will be primarily using a package within tidyverse called `dplyr`. to load in the package, simply type in the following code. What this code is saying is IF you don't have the `tidyverse` installed, THEN install the package. After that, load the `tidyverse` with the `library()` function.
 
 ```{r include = FALSE}
+
 knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_knit$set(root.dir = "C:/Users/alexs/Documents/Github/Emac_Rmanual/") 
 
 library(knitr)
 if(!require(tidyverse)){
