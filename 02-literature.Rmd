@@ -21,7 +21,7 @@ library(knitr)
 if(!require(tidyverse)){
     install.packages("kableExtra")
 }
-library(kableExtra)
+
 library(tidyverse)
 
 ```
@@ -31,7 +31,7 @@ if(!require(tidyverse)){
     install.packages("tidyverse")
 }
 library(tidyverse) 
-
+library(kableExtra)
 ```
 
 ### setting the working directory
