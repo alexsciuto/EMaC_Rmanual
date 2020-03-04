@@ -76,9 +76,9 @@ For this particular experiment we have two independent variables of interest: `v
 
 For this particular function, the first argument is going to be the dataset of interest. the dataset for we will be selecting from is `mydata`. The following arguments are simply the columns you would like to keep. 
 
-```{message = FALSE, warning=FALSE}
+```{r message = FALSE, warning=FALSE}
 
-dplyr::select(mydata, File_Name, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,	zSpelling_Dictation,zSpelling_Recogntion)
+dplyr::select(mydata, Participants, visual_field, constrained_to, zTOWRE_Word,zTOWRE_Nonword,	zSpelling_Dictation,zSpelling_Recogntion)
 
 ```
 
