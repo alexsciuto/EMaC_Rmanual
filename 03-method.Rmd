@@ -1,3 +1,31 @@
-# Methods
+# Plotting
 
-We describe our methods in this chapter.
+Now that we have a basic understanding of how to wrangle data, now we want to graphically explain the data we are wrangling. For this chapter we will be using `ggplot` package to further understand the data. However, before we go into plotting specific things about the data, we need to learn the grammar of plotting with `ggplot` in general
+
+## ggplot grammar
+
+You can think of the grammar of graphics as a systematic approach for describing the components of a graph. It has seven components (the ones in bold are required to be specifed explicitly in ggplot2):
+
+* Data
+    * data that you’re feeding into a plot.
+* Aesthetic mappings
+    * How are variables (columns) from your data connect to a visual dimension?
+      Horizontal positioning, vertical positioning, size, colour, shape, etc.
+      These visual dimensions are called “aesthetics”
+* Geometric objects
+    * What are the objects that are actually drawn on the plot?
+      A point, a line, a bar, a histogram, a density, etc.
+* Scales
+    * How is a variable mapped to its aesthetic?
+      Will it be mapped linearly? On a log scale? Something else?
+      This includes things like the color scale
+      e.g., c(control, treatment_1, treatment_2) -> c(“blue”, “green”, “red”)
+* Statistical transformations
+    * Whether and how the data are combined/transformed before being plotted
+      e.g., in a bar chart, data are transformed into their frequencies; in a box-plot, data are transformed to a five-number summary.
+* Coordinate system
+    * This is a specification of how the position aesthetics (x and y) are depicted on the plot. For example, rectangular/cartesian, or polar coordinates.
+* Facet
+    * This is a specification of data variables that partition the data into smaller “sub plots”, or panels.
+      These components are like parameters of statistical graphics, defining the “space” of statistical graphics. In theory, there is a one-to-one mapping between a plot and its       grammar components, making this a useful way to specify graphics.
+  
